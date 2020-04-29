@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#299EE3</color>
+    <color name="colorPrimaryDark">#299EE3</color>
+    <color name="colorAccent">#299EE3</color>
+
+    <color name="keyboard_bg">#BDBDBD</color>
+    <color name="iv_back_bg">#F5F5F5</color>
+    <color name="key_normal_bg">#F5F5F5</color>
+    <color name="key_pressed_bg">#33000000</color>
+    <color name="btn_gray">#E0E0E0</color>
+    <color name="app_color_theme_2">#FE6D4B</color> <!-- Bittersweet -->
+</resources>
