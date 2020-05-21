@@ -1,6 +1,6 @@
 package com.example.bleweight.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -9,25 +9,17 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bleweight.R;
-import com.example.bleweight.utils.XToastUtils;
 
 
-public class PiciProductAdapter extends RecyclerView.Adapter<PiciProductAdapter.ListHolder> {
+public class PiciProductAdapter extends RecyclerView.Adapter<PiciProductAdapter.ListHolder> implements View.OnClickListener {
+    private OnItemMyClickListener mOnItemMyClickListener;
+    private Activity activity;
 
-    private Context mContext;
-//    int iconA[] = {
-//            R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher,
-//            R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher};
-//
-//    String productTv[] = {"大蒜1", "大蒜2", "大蒜3", "大蒜4", "大蒜5", "大蒜6", "大蒜7",
-//            "大蒜8", "大蒜9", "大蒜10", "大蒜11", "大蒜12", "大蒜13", "大蒜14", "大蒜15",
-//            "大蒜16", "大蒜17", "大蒜18",
-//            "大蒜19", "大蒜20"};
     int[] icons;
     String[] txt;
 
-    public PiciProductAdapter(Context context, int[] icon, String[] productTv) {
-        this.mContext = context;
+    public PiciProductAdapter(Activity activity, int[] icon, String[] productTv) {
+        this.activity = activity;
         this.icons = icon;
         this.txt = productTv;
 
@@ -38,28 +30,50 @@ public class PiciProductAdapter extends RecyclerView.Adapter<PiciProductAdapter.
     public ListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = View.inflate(parent.getContext(), R.layout.pici_grid_item, null);
-        return new ListHolder(view);
+        ListHolder myViewHolder = new ListHolder(view);
+        view.setOnClickListener(this);//将创建的Vie注册点击事件
+        return myViewHolder;
+
     }
 
 
     @Override
     public void onBindViewHolder(ListHolder holder, int position) {
+        holder.itemView.setTag(position);//将position保存在itemView的tag中，一边点击时获取
         holder.setData(position);
     }
 
     @Override
     public int getItemCount() {
-        return  this.icons.length;
+        return this.icons.length;
     }
 
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            int position = (int) v.getTag();
-            XToastUtils.success("点击：" + position);
-        }
-    };
+//    View.OnClickListener onClickListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            int position = (int) v.getTag();
+////            OrderNoProductFragment fragorder = new OrderNoProductFragment();
+////            fragorder.setGirlGone();
+////            fragorder.setLLHaveProd();
+//            XToastUtils.success("点击：" + position);
+//        }
+//    };
 
+    @Override
+    public void onClick(View view) {
+        if (mOnItemMyClickListener != null) {
+            mOnItemMyClickListener.onItemClick(view, (int) view.getTag());//注意这里使用getTag方法获取position
+        }
+
+    }
+
+
+    public interface OnItemMyClickListener {
+        void onItemClick(View view, int position);
+    }
+    public void setOnItemMyClickListener(OnItemMyClickListener listener) {
+        this.mOnItemMyClickListener = listener;
+    }
 
     class ListHolder extends RecyclerView.ViewHolder {
         ImageView icon;
@@ -68,7 +82,7 @@ public class PiciProductAdapter extends RecyclerView.Adapter<PiciProductAdapter.
         public ListHolder(View itemView) {
             super(itemView);
 
-            itemView.setOnClickListener(onClickListener);
+//            itemView.setOnClickListener(onClickListener);
 
             icon = itemView.findViewById(R.id.pic_pici);
             tv_pici_product = itemView.findViewById(R.id.tv_pici_product);

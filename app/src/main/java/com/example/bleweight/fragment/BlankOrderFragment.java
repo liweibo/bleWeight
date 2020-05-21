@@ -30,7 +30,7 @@ Button btn_new_order;
     }
 
     private void initViews(View v) {
-        btn_new_order =  v.findViewById(R.id.btn_new_order);
+        btn_new_order =  v.findViewById(R.id.new_order_firstpage);
         btn_new_order.setOnClickListener(this);
 
 
@@ -41,17 +41,10 @@ Button btn_new_order;
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_new_order:
-                //下面两句代码是一起使用的；
-//                currentIndex = 1;
-//                showFragment();
+            case R.id.new_order_firstpage:
                 ((MainActivity) getActivity()).showNoProduct();
                 break;
         }
     }
 
-
-    private void setClick() {
-
-    }
 }

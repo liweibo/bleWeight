@@ -33,10 +33,12 @@ import com.example.bleweight.utils.XToastUtils;
 import com.google.android.material.tabs.TabLayout;
 import com.xuexiang.xui.utils.ResUtils;
 import com.xuexiang.xui.utils.SnackbarUtils;
+import com.xuexiang.xui.utils.StatusBarUtils;
 import com.xuexiang.xui.widget.button.RippleView;
 import com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner;
 import com.xuexiang.xui.widget.toast.XToast;
 import com.example.bleweight.utils.modeldataPage;
+import com.yanzhenjie.recyclerview.OnItemClickListener;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -59,7 +61,8 @@ public class MainActivity extends AppCompatActivity implements
     RecyclerView recycler_product;
 
     LinearLayout ll_allFragment;
-
+    PiciProductAdapter mRecyclerAdapter;
+    PiciProductAdapter mTwoRecyclerAdapter;
     Button btn_new_order;
 
     private Fragment currentFragment = new Fragment();
@@ -76,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-
+        StatusBarUtils.fullScreen(this);
 
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
@@ -115,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements
         super.onSaveInstanceState(outState);
     }
 
+
     private void sysKeyBoard() {
         // 设置不调用系统键盘
         if (Build.VERSION.SDK_INT <= 10) {
@@ -133,6 +137,11 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void setClick() {
+//        int tvHei = getTvheight();
+//        float textHeight = (float) ((34 + 0.00000007) / 0.7535);
+//        System.out.println("textHeight:"+textHeight);
+//        LinearLayout.LayoutParams linearParams =(LinearLayout.LayoutParams) findViewById(R.id.ll_cheng_kg).getLayoutParams();
+//        linearParams.height = (int) textHeight;
 //btn_new_order.setOnClickListener(this);
 //        tvOne.setOnClickListener(this);
 //        tvTwo.setOnClickListener(this);
@@ -187,10 +196,25 @@ public class MainActivity extends AppCompatActivity implements
 
 
         initviews();
+
+        findViewById(R.id.tv_zongdian).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
     }
 
 
     public void initviews() {
+
+        mRecyclerAdapter = new PiciProductAdapter(this,
+                modeldataPage.getIconA(), modeldataPage.getProductTv());
+        mTwoRecyclerAdapter = new PiciProductAdapter(this,
+                modeldataPage.getIconPiciTwoA(), modeldataPage.getProductPicitwoTv());
+
         //tab
         for (String page : MultiPage.getPageNames()) {
             tab_layout.addTab(tab_layout.newTab().setText(page));
@@ -203,12 +227,15 @@ public class MainActivity extends AppCompatActivity implements
         mMaterialSpinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(MaterialSpinner spinner, int position, long id, Object item) {
+                StatusBarUtils.fullScreen(MainActivity.this);
                 SnackbarUtils.Long(spinner, "选中： " + item).show();
             }
         });
         mMaterialSpinner.setOnNothingSelectedListener(new MaterialSpinner.OnNothingSelectedListener() {
             @Override
             public void onNothingSelected(MaterialSpinner spinner) {
+                StatusBarUtils.fullScreen(MainActivity.this);
+
                 SnackbarUtils.Long(spinner, "没有选中").show();
             }
         });
@@ -220,8 +247,17 @@ public class MainActivity extends AppCompatActivity implements
         GridLayoutManager layoutManager = new GridLayoutManager(this, 6);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recycler_product.setLayoutManager(layoutManager);
-        recycler_product.setAdapter(new PiciProductAdapter(this,
-                modeldataPage.getIconA(), modeldataPage.getProductTv()));
+        recycler_product.setAdapter(mRecyclerAdapter);
+
+        mRecyclerAdapter.setOnItemMyClickListener(new PiciProductAdapter.OnItemMyClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                XToastUtils.success("点击了位置：" + position);
+
+            }
+        });
+
+
         recycler_product.setRecyclerListener(new RecyclerView.RecyclerListener() {
             @Override
             public void onViewRecycled(RecyclerView.ViewHolder holder) {
@@ -424,14 +460,33 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         if (tab.getText().equals("批次2")) {
-            recycler_product.setAdapter(new PiciProductAdapter(this,
-                    modeldataPage.getIconPiciTwoA(), modeldataPage.getProductPicitwoTv()));
+            recycler_product.setAdapter(mTwoRecyclerAdapter);
+            mTwoRecyclerAdapter.setOnItemMyClickListener(new PiciProductAdapter.OnItemMyClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    XToastUtils.success("two点击了位置：" + position);
+
+                }
+            });
         } else if (tab.getText().equals("批次1")) {
-            recycler_product.setAdapter(new PiciProductAdapter(this,
-                    modeldataPage.getIconA(), modeldataPage.getProductTv()));
+
+            recycler_product.setAdapter(mRecyclerAdapter);
+            mRecyclerAdapter.setOnItemMyClickListener(new PiciProductAdapter.OnItemMyClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    XToastUtils.success("点击了位置：" + position);
+
+                }
+            });
         } else {
-            recycler_product.setAdapter(new PiciProductAdapter(this,
-                    modeldataPage.iconsss, modeldataPage.productsssTv));
+            recycler_product.setAdapter(mTwoRecyclerAdapter);
+            mRecyclerAdapter.setOnItemMyClickListener(new PiciProductAdapter.OnItemMyClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    XToastUtils.success("another点击了位置：" + position);
+
+                }
+            });
         }
 
         XToastUtils.success(tab.getText());
@@ -480,8 +535,6 @@ public class MainActivity extends AppCompatActivity implements
 
             transaction.commit();
         }
-
-
 
 
     }

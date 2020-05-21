@@ -3,102 +3,156 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fafafa"
     android:orientation="vertical">
 
-    <FrameLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="4dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:src="@mipmap/longzhanggui" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|right"
-            android:gravity="center">
-
+            android:background="#00796B"
+            android:orientation="horizontal">
 
             <LinearLayout
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="20dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_gravity="center_vertical|left"
+                android:gravity="center">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
                     android:layout_gravity="center"
-                    android:layout_marginRight="10dp"
-                    android:src="@mipmap/location" />
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="2dp"
+                    android:src="@mipmap/ic_signal_wifi" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="总店"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="20dp"
-                android:gravity="center"
-                android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="4dp"
-                    android:src="@mipmap/peopple" />
+                    android:src="@mipmap/ic_signal_cellular" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="8dp"
+                    android:src="@mipmap/ic_battery" />
 
                 <TextView
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="工号001"
-                    android:textSize="16sp" />
+                    android:layout_gravity="center"
+                    android:text="5月7日 周四 下午 3:17"
+                    android:textColor="#ffffffff"
+                    android:textSize="14sp" />
+
             </LinearLayout>
+
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:src="@mipmap/longzhanggui" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="20dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_gravity="center_vertical|right"
+                android:gravity="center">
 
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="10dp"
-                    android:src="@mipmap/setting" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="设置"
-                    android:textSize="16sp" />
+                    android:layout_gravity="center"
+                    android:layout_marginRight="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="4dp"
+                        android:src="@mipmap/location" />
+
+                    <TextView
+                        android:id="@+id/tv_zongdian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:text="总店"
+                        android:textColor="#ffffffff"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="4dp"
+                        android:src="@mipmap/peopple" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="工号001"
+                        android:textColor="#ffffffff"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="4dp"
+                        android:src="@mipmap/setting" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="设置"
+                        android:textColor="#ffffffff"
+                        android:textSize="14sp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
 
-    </FrameLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#A9A9A9" />
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -113,116 +167,209 @@
             android:orientation="vertical"
             tools:ignore="Suspicious0dp">
 
-            <LinearLayout
+
+            <!--            秤-->
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="64dp"
+
                 android:layout_gravity="center_vertical"
-                android:gravity="center_vertical">
+                android:layout_margin="16dp"
+                android:gravity="center_vertical"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:paddingLeft="30dp"
-                    android:paddingRight="10dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                    <com.xuexiang.xui.widget.button.SmoothCheckBox
-                        android:id="@+id/scheck_box_one"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_marginRight="5dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="秤#1"
-                        android:textSize="25sp" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
 
-                    <TextView
-                        style="@style/EditText.Normal"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_marginStart="10dp"
-                        android:gravity="center"
-                        android:singleLine="true"
-                        android:text="155.00kg"
-                        android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:background="@drawable/chengforthree"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|start"
+                            android:layout_weight="0.8"
+                            android:paddingLeft="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="秤#1"
+                                android:textColor="#ff00796b"
+                                android:textSize="20sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|end"
+                            android:paddingRight="10dp">
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:singleLine="true"
+                                android:text="188.00"
+                                android:textColor="#ff00796b"
+                                android:textSize="34sp" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal|bottom"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginBottom="4dp"
+                                android:singleLine="true"
+                                android:text="kg"
+                                android:textColor="#ff00796b"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+
+                        android:background="@drawable/chengforthree_another"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|start"
+                            android:layout_weight="0.8"
+                            android:paddingLeft="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="秤#2"
+                                android:textColor="#8a000000"
+                                android:textSize="20sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|end"
+                            android:paddingRight="10dp">
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:singleLine="true"
+                                android:text="0.00"
+                                android:textColor="#8a000000"
+                                android:textSize="34sp" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal|bottom"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginBottom="4dp"
+                                android:singleLine="true"
+                                android:text="kg"
+                                android:textColor="#8a000000"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+
+                        android:background="@drawable/chengforthree_another"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|start"
+                            android:layout_weight="0.8"
+                            android:paddingLeft="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="秤#3"
+                                android:textColor="#8a000000"
+                                android:textSize="20sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|end"
+                            android:paddingRight="10dp">
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:singleLine="true"
+                                android:text="0.00"
+                                android:textColor="#8a000000"
+                                android:textSize="34sp" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal|bottom"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginBottom="4dp"
+                                android:singleLine="true"
+                                android:text="kg"
+                                android:textColor="#8a000000"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="10dp">
-
-                    <com.xuexiang.xui.widget.button.SmoothCheckBox
-                        android:id="@+id/scheck_box_two"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_marginRight="5dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="秤#2"
-                        android:textSize="25sp" />
-
-                    <TextView
-                        style="@style/EditText.Normal"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_marginStart="10dp"
-
-                        android:gravity="center"
-                        android:singleLine="true" />
-                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="10dp">
-
-                    <com.xuexiang.xui.widget.button.SmoothCheckBox
-                        android:id="@+id/scheck_box_three"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_marginRight="5dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="秤#3"
-                        android:textSize="25sp" />
-
-                    <TextView
-                        style="@style/EditText.Normal"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_marginStart="10dp"
-
-                        android:gravity="center"
-                        android:singleLine="true" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="#A9A9A9" />
             <!--        左边秤 以下的部分-->
 
 
@@ -230,80 +377,90 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <!--                按批次时填充的整个布局-->
-                <LinearLayout
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
 
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="16dp"
+                    android:gravity="center_vertical"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="4dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="horizontal">
-
-                            <com.google.android.material.tabs.TabLayout
-                                android:id="@+id/tab_layout"
-                                style="@style/TabLayoutStyle"
-                                android:layout_width="match_parent"
-                                android:layout_height="?attr/xui_actionbar_height" />
-                        </LinearLayout>
-
-                        <!--分割线-->
-                        <TextView
-                            android:layout_width="0.5dp"
-                            android:layout_height="match_parent"
-                            android:background="#A9A9A9" />
-
-                        <LinearLayout
-                            android:layout_width="120dp"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center_vertical|right">
-
-
-                            <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
-                                android:id="@+id/spinner"
-                                android:layout_width="match_parent"
-                                android:layout_height="?attr/xui_actionbar_height"
-                                android:textColor="@color/xui_config_color_edittext_textcolor"
-                                android:textSize="22sp"
-                                app:ms_dropdown_bg="@drawable/drop_down"
-                                app:ms_dropdown_height="wrap_content"
-                                app:ms_text_color="@color/ms_dropdown_item_textcolor"
-
-                                />
-                        </LinearLayout>
-                    </LinearLayout>
-
-
-                    <!--分割线-->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:background="#A9A9A9" />
-
-                    <!--                    商品显示-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:padding="20dp">
+                        android:orientation="vertical">
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recycler_product"
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_height="wrap_content">
+
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.tabs.TabLayout
+                                    android:id="@+id/tab_layout"
+                                    style="@style/TabLayoutStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="?attr/xui_actionbar_height" />
+                            </LinearLayout>
+
+                            <!--分割线-->
+                            <TextView
+                                android:layout_width="0.5dp"
+                                android:layout_height="match_parent"
+                                android:background="#A9A9A9" />
+
+                            <LinearLayout
+                                android:layout_width="120dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_vertical|right">
+
+
+                                <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
+                                    android:id="@+id/spinner"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="?attr/xui_actionbar_height"
+                                    android:textColor="@color/xui_config_color_edittext_textcolor"
+                                    android:textSize="22sp"
+                                    app:ms_dropdown_bg="@drawable/drop_down"
+                                    app:ms_dropdown_height="wrap_content"
+                                    app:ms_text_color="@color/ms_dropdown_item_textcolor"
+
+                                    />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="#A9A9A9" />
+
+
+                        <!--                    商品显示-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:padding="20dp">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recycler_product"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </LinearLayout>
+
+
                     </LinearLayout>
-
-
-                </LinearLayout>
-
+                </androidx.cardview.widget.CardView>
 
                 <!--                bu按批次时填充的整个布局-->
 
@@ -313,41 +470,6 @@
         </LinearLayout>
         <!--分割线-->
 
-
-        <TextView
-            android:layout_width="0.5dp"
-            android:layout_height="match_parent"
-            android:background="#A9A9A9"
-            tools:ignore="Suspicious0dp" />
-        <LinearLayout
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:background="#A9A9A9"
-                android:layout_width="5dp"
-                android:layout_height="5dp"/>
-
-            <TextView
-                android:layout_marginTop="5dp"
-                android:background="#A9A9A9"
-                android:layout_width="5dp"
-                android:layout_height="5dp"/>
-
-            <TextView
-                android:layout_marginTop="5dp"
-                android:background="#A9A9A9"
-                android:layout_width="5dp"
-                android:layout_height="5dp"/>
-        </LinearLayout>
-        <TextView
-            android:layout_width="0.5dp"
-            android:layout_height="match_parent"
-            android:background="#A9A9A9" />
 
         <!--右部分-->
 
@@ -359,15 +481,43 @@
             android:orientation="vertical"
             tools:ignore="HardcodedText,Suspicious0dp">
 
-            <LinearLayout
-                android:id="@+id/frag"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                android:layout_height="0dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="16dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp">
 
-            </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/frag"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:gravity="center_vertical"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"></LinearLayout>
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
     </LinearLayout>
