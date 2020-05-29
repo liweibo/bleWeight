@@ -5,6 +5,8 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:clickable="true"
+        android:background="@drawable/ripple_bg_pro_recy_item"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="center_vertical"

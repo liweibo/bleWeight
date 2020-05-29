@@ -24,6 +24,14 @@ public class RecyclerItemDataProvider {
                 99, 12.23,856));
         list.add(new productAddDataInfo("07", "芹菜",2,
                 103, 89.09,565));
+        list.add(new productAddDataInfo("08", "芹菜",2,
+                103, 89.09,565));
+        list.add(new productAddDataInfo("09", "芹菜test",2,
+                103, 19.09,565));
+        list.add(new productAddDataInfo("10", "芹菜", 2,
+                103, 809.09, 55));
+        list.add(new productAddDataInfo("11", "芹菜", 2,
+                103, 89.09, 85));
 
        return list;
     }

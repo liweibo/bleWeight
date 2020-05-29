@@ -18,8 +18,11 @@ import com.example.bleweight.utils.MultiPage;
 import com.example.bleweight.utils.OrderPage;
 import com.example.bleweight.utils.XToastUtils;
 import com.example.bleweight.utils.data.RecyclerItemDataProvider;
+import com.example.bleweight.utils.data.productAddDataInfo;
 import com.google.android.material.tabs.TabLayout;
+import com.xuexiang.xui.adapter.recyclerview.RecyclerViewHolder;
 import com.xuexiang.xui.utils.WidgetUtils;
+import com.yanzhenjie.recyclerview.OnItemClickListener;
 import com.yanzhenjie.recyclerview.OnItemMenuClickListener;
 import com.yanzhenjie.recyclerview.SwipeMenu;
 import com.yanzhenjie.recyclerview.SwipeMenuBridge;
@@ -72,6 +75,8 @@ public class OrderNoProductFragment extends Fragment {
         ll_girl_no_product = v.findViewById(R.id.ll_girl_no_product);
         //recyclerview
         recycler_view_have_prod = v.findViewById(R.id.recycler_view_have_prod);
+
+
         new_order_firstpage = v.findViewById(R.id.new_order_firstpage);
         ll_have_product_recycler = v.findViewById(R.id.ll_have_product_recycler);
     }
@@ -90,10 +95,15 @@ public class OrderNoProductFragment extends Fragment {
         new_order_firstpage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setGirlGone();
+                setLLHaveProd();
                 //加载recycler上展示的数据
                 mAdapter.refresh(RecyclerItemDataProvider.getZhongxinfachuListNewInfos());
+
             }
         });
+
+
 
     }
 
