@@ -1,6 +1,8 @@
 package com.example.bleweight;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -30,6 +33,7 @@ import com.example.bleweight.fragment.OrderComputeFragment;
 import com.example.bleweight.fragment.OrderNoProductFragment;
 import com.example.bleweight.utils.MultiPage;
 import com.example.bleweight.utils.XToastUtils;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.xuexiang.xui.utils.ResUtils;
 import com.xuexiang.xui.utils.SnackbarUtils;
@@ -72,6 +76,14 @@ public class MainActivity extends AppCompatActivity implements
     private static final String CURRENT_FRAGMENT = "STATE_FRAGMENT_SHOW";
     FragmentManager fragmentManager;
     FragmentTransaction transaction;
+    private LinearLayout top_on_left;
+    private LinearLayout main_left;
+    private LinearLayout ll_top_on_right;
+    private LinearLayout tv_status_right_top;
+    private LinearLayout ll_close_bggray;
+
+    CardView card_view_product;
+    private FloatingActionButton fab_close;
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
@@ -193,7 +205,12 @@ public class MainActivity extends AppCompatActivity implements
 
         //商品
         recycler_product = findViewById(R.id.recycler_product);
-
+        top_on_left = findViewById(R.id.top_on_left);
+        ll_top_on_right = findViewById(R.id.ll_top_on_right);
+        tv_status_right_top = findViewById(R.id.tv_status_right_top);
+        main_left = findViewById(R.id.main_left);
+        card_view_product = findViewById(R.id.card_view_product);
+        fab_close = findViewById(R.id.fab_close);
 
         initviews();
 
@@ -203,7 +220,26 @@ public class MainActivity extends AppCompatActivity implements
 
             }
         });
+        fab_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                XToastUtils.toast("666");
+            }
+        });
 
+
+        //获取屏幕宽度
+        WindowManager wm = (WindowManager) this
+                .getSystemService(Context.WINDOW_SERVICE);
+        int width2 = wm.getDefaultDisplay().getWidth();
+        int height2 = wm.getDefaultDisplay().getHeight();
+        //设置阴影蒙版的宽度，高度为整个屏幕的高度。
+//        top_on_left.setWidth((int) ((width2 * 0.667) ));
+//        ll_top_on_right.setWidth((int) ((width2 * 0.334) ));
+//        tv_status_right_top.setWidth((int) ((width2 * 0.334) ));
+        top_on_left.setMinimumWidth((int) ((width2 * 0.667)));
+        ll_top_on_right.setMinimumWidth((int) (width2 * 0.334));
+        tv_status_right_top.setMinimumWidth((int) (width2 * 0.334));
 
     }
 

@@ -2,27 +2,25 @@ package com.example.bleweight.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.example.bleweight.MainActivity;
 import com.example.bleweight.R;
 import com.example.bleweight.adapter.ProductRecyclerAdapter;
-import com.example.bleweight.utils.MultiPage;
+import com.example.bleweight.utils.MaterialLoadMoreView;
 import com.example.bleweight.utils.OrderPage;
 import com.example.bleweight.utils.XToastUtils;
 import com.example.bleweight.utils.data.RecyclerItemDataProvider;
-import com.example.bleweight.utils.data.productAddDataInfo;
 import com.google.android.material.tabs.TabLayout;
-import com.xuexiang.xui.adapter.recyclerview.RecyclerViewHolder;
 import com.xuexiang.xui.utils.WidgetUtils;
-import com.yanzhenjie.recyclerview.OnItemClickListener;
 import com.yanzhenjie.recyclerview.OnItemMenuClickListener;
 import com.yanzhenjie.recyclerview.SwipeMenu;
 import com.yanzhenjie.recyclerview.SwipeMenuBridge;
@@ -44,7 +42,9 @@ public class OrderNoProductFragment extends Fragment {
     SwipeRecyclerView recycler_view_have_prod;
     private ProductRecyclerAdapter mAdapter;
     Button new_order_firstpage;
-
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private Handler mHandler = new Handler();
+    private boolean mEnableLoadMore;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,8 +76,10 @@ public class OrderNoProductFragment extends Fragment {
         //recyclerview
         recycler_view_have_prod = v.findViewById(R.id.recycler_view_have_prod);
 
+        swipeRefreshLayout = v.findViewById(R.id.swipe_refresh_layout_havaorder);
+        swipeRefreshLayout.setColorSchemeColors(0xff0099cc, 0xffff4444, 0xff669900, 0xffaa66cc, 0xffff8800);
 
-        new_order_firstpage = v.findViewById(R.id.new_order_firstpage);
+        new_order_firstpage = v.findViewById(R.id.new_order_firstpage_haveorder);
         ll_have_product_recycler = v.findViewById(R.id.ll_have_product_recycler);
     }
 
@@ -92,6 +94,7 @@ public class OrderNoProductFragment extends Fragment {
 
         recycler_view_have_prod.setAdapter(mAdapter = new ProductRecyclerAdapter());
 
+
         new_order_firstpage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,6 +106,9 @@ public class OrderNoProductFragment extends Fragment {
             }
         });
 
+        // 刷新监听。
+        swipeRefreshLayout.setOnRefreshListener(mRefreshListener);
+        refresh();
 
 
     }
@@ -175,4 +181,75 @@ public class OrderNoProductFragment extends Fragment {
     public interface CallBack {
         public void getResult(String result);
     }
+
+
+
+
+    /**
+     * 刷新。
+     */
+    private SwipeRefreshLayout.OnRefreshListener mRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            loadData();
+        }
+    };
+
+    private void refresh() {
+        swipeRefreshLayout.setRefreshing(true);
+        loadData();
+    }
+
+    private void loadData() {
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mAdapter.refresh(RecyclerItemDataProvider.getZhongxinfachuListNewInfos());
+                if (swipeRefreshLayout != null) {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+                enableLoadMore();
+            }
+        }, 1000);
+    }
+
+    /**
+     * 确保有数据加载了才开启加载更多
+     */
+    private void enableLoadMore() {
+        if (recycler_view_have_prod != null && !mEnableLoadMore) {
+            mEnableLoadMore = true;
+            useMaterialLoadMore();
+            // 加载更多的监听。
+            recycler_view_have_prod.setLoadMoreListener(mLoadMoreListener);
+            recycler_view_have_prod.loadMoreFinish(false, true);
+        }
+    }
+
+    private void useMaterialLoadMore() {
+        MaterialLoadMoreView loadMoreView = new MaterialLoadMoreView(getContext());
+        recycler_view_have_prod.addFooterView(loadMoreView);
+        recycler_view_have_prod.setLoadMoreView(loadMoreView);
+    }
+
+    /**
+     * 加载更多。
+     */
+    private SwipeRecyclerView.LoadMoreListener mLoadMoreListener = new SwipeRecyclerView.LoadMoreListener() {
+        @Override
+        public void onLoadMore() {
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mAdapter.loadMore(RecyclerItemDataProvider.getZhongxinfachuListNewInfos());
+                    if (recycler_view_have_prod != null) {
+                        recycler_view_have_prod.loadMoreFinish(false, true);
+                    }
+                }
+            }, 1000);
+        }
+    };
+
+
+
 }

@@ -13,7 +13,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/new_order_firstpage"
+            android:id="@+id/new_order_firstpage_haveorder"
             android:layout_width="128dp"
             android:layout_height="44dp"
             android:layout_marginLeft="8dp"
@@ -199,13 +199,19 @@
             android:orientation="vertical"
             android:visibility="gone">
 
-            <com.yanzhenjie.recyclerview.SwipeRecyclerView
-                android:id="@+id/recycler_view_have_prod"
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_refresh_layout_havaorder"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:overScrollMode="never" />
-        </LinearLayout>
+                android:layout_height="match_parent">
 
+                <com.yanzhenjie.recyclerview.SwipeRecyclerView
+                    android:id="@+id/recycler_view_have_prod"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never" />
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </LinearLayout>
 
 
     </FrameLayout>
