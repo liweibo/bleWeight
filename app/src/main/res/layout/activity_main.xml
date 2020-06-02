@@ -673,7 +673,7 @@
                                 android:layout_height="wrap_content">
 
                                 <Button
-                                    android:id="@+id/jijian"
+                                    android:id="@+id/jijian_btn"
                                     android:layout_width="80dp"
                                     android:layout_height="36dp"
                                     android:layout_marginLeft="16dp"
@@ -686,7 +686,7 @@
                                     android:textSize="14sp" />
 
                                 <Button
-                                    android:id="@+id/jizhong"
+                                    android:id="@+id/jizhong_btn"
                                     android:layout_width="80dp"
                                     android:layout_height="36dp"
                                     android:layout_marginTop="16dp"
@@ -700,7 +700,7 @@
                             <!-- 输入框-->
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
                                 <FrameLayout
@@ -730,15 +730,16 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_gravity="right|center_vertical"
+                                        android:layout_gravity="right|bottom"
                                         android:layout_marginRight="18dp"
+                                        android:layout_marginBottom="12dp"
                                         android:text="元/kg"
                                         android:textColor="#8a000000"
                                         android:textSize="14sp" />
                                 </FrameLayout>
 
-
                                 <FrameLayout
+                                    android:id="@+id/framelayout_jijian"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
 
@@ -766,15 +767,18 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_gravity="right|center_vertical"
+                                        android:layout_gravity="right|bottom"
                                         android:layout_marginRight="18dp"
-                                        android:text="元/kg"
+
+                                        android:layout_marginBottom="12dp"
+                                        android:text="件"
                                         android:textColor="#8a000000"
                                         android:textSize="14sp" />
                                 </FrameLayout>
 
-
                                 <FrameLayout
+
+                                    android:id="@+id/framlayout_jizhong"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
 
@@ -800,18 +804,124 @@
 
                                     </com.google.android.material.textfield.TextInputLayout>
 
-                                    <TextView
+
+                                    <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
+                                        android:id="@+id/spinner_material"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_gravity="right|center_vertical"
+                                        android:layout_gravity="right|bottom"
                                         android:layout_marginRight="18dp"
-                                        android:text="元/kg"
+                                        android:layout_marginBottom="10dp"
                                         android:textColor="#8a000000"
-                                        android:textSize="14sp" />
-                                </FrameLayout>
+                                        android:textSize="14sp"
+                                        app:ms_entries="@array/sort_mode_entryexample" />
 
+                                </FrameLayout>
                             </LinearLayout>
 
+                            <!--                            键盘-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_marginTop="30dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+                                <!--键盘数字-->
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+                                    <!--第一排数字-->
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1">
+
+                                        <LinearLayout
+                                            android:layout_gravity="center"
+                                            android:gravity="center"
+                                            android:layout_weight="1"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent">
+                                            <Button
+                                                android:text="7"
+                                                android:textColor="#8a000000"
+                                                android:textSize="34sp"
+                                                android:layout_width="56dp"
+                                                android:layout_height="56dp"/>
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_gravity="center"
+                                            android:gravity="center"
+                                            android:layout_weight="1"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent">
+                                            <Button
+                                                android:text="8"
+                                                android:textColor="#8a000000"
+                                                android:textSize="34sp"
+                                                android:layout_width="56dp"
+                                                android:layout_height="56dp"/>
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_gravity="center"
+                                            android:gravity="center"
+                                            android:layout_weight="1"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent">
+                                            <Button
+                                                android:text="9"
+                                                android:textColor="#8a000000"
+                                                android:textSize="34sp"
+                                                android:layout_width="56dp"
+                                                android:layout_height="56dp"/>
+                                        </LinearLayout>
+
+
+                                    </LinearLayout>
+
+                                    <!--第2排数字-->
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1">
+
+                                    </LinearLayout>
+
+
+                                    <!--第3排数字-->
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1">
+
+                                    </LinearLayout>
+
+                                    <!--第4排数字-->
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1">
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+                                <!--箭头按钮-->
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.7"
+                                    android:background="#fafafa">
+
+                                </LinearLayout>
+                            </LinearLayout>
 
                         </LinearLayout>
                     </FrameLayout>

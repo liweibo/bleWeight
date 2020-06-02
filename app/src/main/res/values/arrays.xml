@@ -225,6 +225,13 @@
 
     </string-array>
 
+    <string-array name="sort_mode_entryexample">
+        <item>秤#1</item>
+        <item>秤#2</item>
+        <item>秤#3</item>
+
+    </string-array>
+
     <string-array name="sort_mode_one_entry">
         <item>根据品牌名称排序</item>
     </string-array>
@@ -238,8 +245,6 @@
         <item />
         <item>退出</item>
     </string-array>
-
-
 
 
     <string-array name="settings_list_preference_titles">

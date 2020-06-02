@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -56,6 +58,9 @@ public class MainActivity extends AppCompatActivity implements
             tvNums, tvZhekou, tvPrice, tvPlusjian, tvDot;
     ImageView tvDele;
     EditText etInput;
+    EditText text_input_danjia;
+    EditText text_input_jianshu;
+    EditText text_input_zhongliang;
     SharedPreferences.Editor editor;
     RippleView btnLabel;
 
@@ -84,6 +89,11 @@ public class MainActivity extends AppCompatActivity implements
 
     CardView card_view_product;
     private FloatingActionButton fab_close;
+    private MaterialSpinner spinner_material;
+    FrameLayout framelayout_jijian;
+    FrameLayout framlayout_jizhong;
+    Button jijian_btn;
+    Button jizhong_btn;
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
@@ -118,7 +128,9 @@ public class MainActivity extends AppCompatActivity implements
 
 
         findVIew();
-//        sysKeyBoard();
+        sysKeyBoard(text_input_danjia);
+        sysKeyBoard(text_input_zhongliang);
+        sysKeyBoard(text_input_jianshu);
         setClick();
     }
 
@@ -131,17 +143,18 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
-    private void sysKeyBoard() {
+    private void sysKeyBoard(EditText xxx) {
         // 设置不调用系统键盘
         if (Build.VERSION.SDK_INT <= 10) {
-            etInput.setInputType(InputType.TYPE_NULL);
+
+            xxx.setInputType(InputType.TYPE_NULL);
         } else {
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
             try {
                 Class<EditText> cls = EditText.class;
                 Method setShowSoftInputOnFocus = cls.getMethod("setShowSoftInputOnFocus", boolean.class);
                 setShowSoftInputOnFocus.setAccessible(true);
-                setShowSoftInputOnFocus.invoke(etInput, false);
+                setShowSoftInputOnFocus.invoke(xxx, false);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -211,8 +224,21 @@ public class MainActivity extends AppCompatActivity implements
         main_left = findViewById(R.id.main_left);
         card_view_product = findViewById(R.id.card_view_product);
         fab_close = findViewById(R.id.fab_close);
+        spinner_material = findViewById(R.id.spinner_material);
+        framelayout_jijian = findViewById(R.id.framelayout_jijian);
+        framlayout_jizhong = findViewById(R.id.framlayout_jizhong);
+        jijian_btn = findViewById(R.id.jijian_btn);
+        jizhong_btn = findViewById(R.id.jizhong_btn);
+
+        text_input_danjia = findViewById(R.id.text_input_danjia);
+        text_input_zhongliang = findViewById(R.id.text_input_zhongliang);
+        text_input_jianshu = findViewById(R.id.text_input_jianshu);
 
         initviews();
+
+         //默认是计件
+        framelayout_jijian.setVisibility(View.VISIBLE);
+        framlayout_jizhong.setVisibility(View.GONE);
 
         findViewById(R.id.tv_zongdian).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -226,7 +252,45 @@ public class MainActivity extends AppCompatActivity implements
                 XToastUtils.toast("666");
             }
         });
+        spinner_material.setOnItemSelectedListener(
+                new MaterialSpinner.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
+                        XToastUtils.success("选择了：" + item.toString());
+                    }
+                }
+        );
 
+        //点击计重按钮
+        jizhong_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                framelayout_jijian.setVisibility(View.GONE);
+                framlayout_jizhong.setVisibility(View.VISIBLE);
+
+                jizhong_btn.setBackgroundResource(R.drawable.ripple_bg_jijian);
+                jizhong_btn.setTextColor(Color.parseColor("#ff00796b"));
+
+                jijian_btn.setBackgroundResource(R.drawable.ripple_bg_jizhong);
+                jijian_btn.setTextColor(Color.parseColor("#8a000000"));
+            }
+        });
+        //点击计件按钮
+        jijian_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                framelayout_jijian.setVisibility(View.VISIBLE);
+                framlayout_jizhong.setVisibility(View.GONE);
+
+                jijian_btn.setBackgroundResource(R.drawable.ripple_bg_jijian);
+                jijian_btn.setTextColor(Color.parseColor("#ff00796b"));
+
+                jizhong_btn.setBackgroundResource(R.drawable.ripple_bg_jizhong);
+                jizhong_btn.setTextColor(Color.parseColor("#8a000000"));
+
+
+            }
+        });
 
         //获取屏幕宽度
         WindowManager wm = (WindowManager) this
