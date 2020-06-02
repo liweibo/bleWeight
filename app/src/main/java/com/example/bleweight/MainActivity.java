@@ -10,11 +10,13 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -54,9 +56,9 @@ import static com.google.android.material.tabs.TabLayout.MODE_SCROLLABLE;
 
 public class MainActivity extends AppCompatActivity implements
         View.OnClickListener, TabLayout.OnTabSelectedListener {
-    TextView tvOne, tvTwo, tvThree, tvFour, tvFive, tvSix, tvSeven, tvEight, tvNine, tvZero,
-            tvNums, tvZhekou, tvPrice, tvPlusjian, tvDot;
-    ImageView tvDele;
+    Button tvOne, tvTwo, tvThree, tvFour, tvFive, tvSix, tvSeven, tvEight, tvNine, tvZero, tvDot;
+    ImageButton tvDele;
+
     EditText etInput;
     EditText text_input_danjia;
     EditText text_input_jianshu;
@@ -94,6 +96,9 @@ public class MainActivity extends AppCompatActivity implements
     FrameLayout framlayout_jizhong;
     Button jijian_btn;
     Button jizhong_btn;
+
+    FloatingActionButton fab_confirmbtn;
+
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
@@ -168,22 +173,20 @@ public class MainActivity extends AppCompatActivity implements
 //        LinearLayout.LayoutParams linearParams =(LinearLayout.LayoutParams) findViewById(R.id.ll_cheng_kg).getLayoutParams();
 //        linearParams.height = (int) textHeight;
 //btn_new_order.setOnClickListener(this);
-//        tvOne.setOnClickListener(this);
-//        tvTwo.setOnClickListener(this);
-//        tvThree.setOnClickListener(this);
-//        tvFour.setOnClickListener(this);
-//        tvSix.setOnClickListener(this);
-//        tvFive.setOnClickListener(this);
-//        tvSeven.setOnClickListener(this);
-//        tvEight.setOnClickListener(this);
-//        tvNine.setOnClickListener(this);
-//        tvZero.setOnClickListener(this);
-//        tvPlusjian.setOnClickListener(this);
-//        tvNums.setOnClickListener(this);
-//        tvDot.setOnClickListener(this);
-//        tvPrice.setOnClickListener(this);
-//        tvZhekou.setOnClickListener(this);
-//        tvDele.setOnClickListener(this);
+        tvOne.setOnClickListener(this);
+        tvTwo.setOnClickListener(this);
+        tvThree.setOnClickListener(this);
+        tvFour.setOnClickListener(this);
+        tvSix.setOnClickListener(this);
+        tvFive.setOnClickListener(this);
+        tvSeven.setOnClickListener(this);
+        tvEight.setOnClickListener(this);
+        tvNine.setOnClickListener(this);
+        tvZero.setOnClickListener(this);
+        tvDot.setOnClickListener(this);
+        tvDele.setOnClickListener(this);
+
+
     }
 
     public void findVIew() {
@@ -193,22 +196,23 @@ public class MainActivity extends AppCompatActivity implements
         ll_allFragment = findViewById(R.id.frag);
 
 //        etInput = findViewById(R.id.et_input);
-//        tvOne = findViewById(R.id.tv_one);
-//        tvTwo = findViewById(R.id.tv_two);
-//        tvThree = findViewById(R.id.tv_three);
-//        tvFour = findViewById(R.id.tv_four);
-//        tvFive = findViewById(R.id.tv_five);
-//        tvSix = findViewById(R.id.tv_six);
-//        tvSeven = findViewById(R.id.tv_seven);
-//        tvEight = findViewById(R.id.tv_eight);
-//        tvNine = findViewById(R.id.tv_nine);
-//        tvZero = findViewById(R.id.tv_zero);
-//        tvNums = findViewById(R.id.tv_nums);
+        tvOne = findViewById(R.id.btn_one);
+        tvTwo = findViewById(R.id.btn_two);
+        tvThree = findViewById(R.id.btn_three);
+        tvFour = findViewById(R.id.btn_four);
+        tvFive = findViewById(R.id.btn_five);
+        tvSix = findViewById(R.id.btn_six);
+        tvSeven = findViewById(R.id.btn_seven);
+        tvEight = findViewById(R.id.btn_eight);
+        tvNine = findViewById(R.id.btn_nine);
+        tvZero = findViewById(R.id.btn_zero);
+        tvDot = findViewById(R.id.btn_dot);
+        tvDele = findViewById(R.id.ibtn_delete);
+//        tvNums = findViewById(R.id.btn_nums);
 //        tvPrice = findViewById(R.id.tv_price);
 //        tvZhekou = findViewById(R.id.tv_zhekou);
 //        tvPlusjian = findViewById(R.id.tv_plus_jian);
-//        tvDot = findViewById(R.id.tv_numdot);
-//        tvDele = findViewById(R.id.iv_delete);
+
 //        btnLabel = findViewById(R.id.btn_label);
 //        numsBackground();//默认选中 "数量" 的背景为蓝色；
         mMaterialSpinner = findViewById(R.id.spinner);
@@ -233,10 +237,13 @@ public class MainActivity extends AppCompatActivity implements
         text_input_danjia = findViewById(R.id.text_input_danjia);
         text_input_zhongliang = findViewById(R.id.text_input_zhongliang);
         text_input_jianshu = findViewById(R.id.text_input_jianshu);
+        //确认按钮➡️
+        fab_confirmbtn = findViewById(R.id.fab_confirmbtn);
+
 
         initviews();
 
-         //默认是计件
+        //默认是计件
         framelayout_jijian.setVisibility(View.VISIBLE);
         framlayout_jizhong.setVisibility(View.GONE);
 
@@ -249,7 +256,9 @@ public class MainActivity extends AppCompatActivity implements
         fab_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                XToastUtils.toast("666");
+                top_on_left.setVisibility(View.INVISIBLE);
+                ll_top_on_right.setVisibility(View.INVISIBLE);
+                tv_status_right_top.setVisibility(View.INVISIBLE);
             }
         });
         spinner_material.setOnItemSelectedListener(
@@ -304,6 +313,47 @@ public class MainActivity extends AppCompatActivity implements
         top_on_left.setMinimumWidth((int) ((width2 * 0.667)));
         ll_top_on_right.setMinimumWidth((int) (width2 * 0.334));
         tv_status_right_top.setMinimumWidth((int) (width2 * 0.334));
+
+
+        //默认是 单价输入框选中
+        etInput = text_input_danjia;
+        text_input_danjia.setFocusable(true);
+
+
+//        text_input_danjia.setOnClickListener(this);
+//        text_input_zhongliang.setOnClickListener(this);
+//        text_input_jianshu.setOnClickListener(this);
+
+        text_input_danjia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+
+        text_input_danjia.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                etInput = text_input_danjia;
+
+                return false;
+            }
+        });
+        text_input_zhongliang.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                etInput = text_input_zhongliang;
+
+                return false;
+            }
+        });
+        text_input_jianshu.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                etInput = text_input_jianshu;
+
+                return false;
+            }
+        });
 
     }
 
@@ -379,104 +429,119 @@ public class MainActivity extends AppCompatActivity implements
     public void onClick(View v) {
 
 
-//        switch (v.getId()) {
-//            case R.id.tv_one:
-//                //表示按了0之后，后面的只能按. 不能按1-9的数字
-//                if ("0".equals(etInput.getText().toString().trim())) {
-//                    break;
-//                }
-//                clickNum("1");
-//
-//                break;
-//
-//            case R.id.tv_two:
-//                if ("0".equals(etInput.getText().toString().trim())) {
-//                    break;
-//                }
-//                clickNum("2");
-//
-//                break;
-//
-//            case R.id.tv_three:
-//                if ("0".equals(etInput.getText().toString().trim())) {
-//                    break;
-//                }
-//                clickNum("3");
-//
-//
-//                break;
-//
-//            case R.id.tv_four:
-//                if ("0".equals(etInput.getText().toString().trim())) {
-//                    break;
-//                }
-//                clickNum("4");
-//
-//
-//                break;
-//
-//            case R.id.tv_five:
-//                if ("0".equals(etInput.getText().toString().trim())) {
-//                    break;
-//                }
-//                clickNum("5");
-//
-//                break;
-//
-//            case R.id.tv_six:
-//                if ("0".equals(etInput.getText().toString().trim())) {
-//                    break;
-//                }
-//                clickNum("6");
-//
-//                break;
-//
-//            case R.id.tv_seven:
-//                if ("0".equals(etInput.getText().toString().trim())) {
-//                    break;
-//                }
-//                clickNum("7");
-//
-//                break;
-//
-//            case R.id.tv_eight:
-//                if ("0".equals(etInput.getText().toString().trim())) {
-//                    break;
-//                }
-//                clickNum("8");
-//
-//                break;
-//
-//            case R.id.tv_nine:
-//                if ("0".equals(etInput.getText().toString().trim())) {
-//                    break;
-//                }
-//                clickNum("9");
-//
-//                break;
-//
-//            case R.id.tv_zero:
-//                // 第一个数字按下0的话，第二个数字只能按小数点
-//                if ("0".equals(etInput.getText().toString().trim())) {
-//                    break;
-//                }
-//                etInput.setText(etInput.getText().toString().trim() + "0");
-//                etInput.setSelection(etInput.getText().length());
-//                break;
-//
-//            case R.id.tv_numdot:
-//                //第一个字符不能按 小数点
-//                String mynumdot = etInput.getText().toString().trim();
-//                if (mynumdot.length() == 0) {
-//                    break;
-//                }
-//                onlyOneDot(mynumdot);
-//                break;
-//
+        switch (v.getId()) {
+            case R.id.text_input_danjia:
+                etInput = text_input_danjia;
+
+                break;
+            case R.id.text_input_zhongliang:
+                etInput = text_input_zhongliang;
+
+
+                break;
+            case R.id.text_input_jianshu:
+                etInput = text_input_jianshu;
+                XToastUtils.success("000000000");
+
+                break;
+
+            case R.id.btn_one:
+                //表示按了0之后，后面的只能按. 不能按1-9的数字
+                if ("0".equals(etInput.getText().toString().trim())) {
+                    break;
+                }
+                clickNum("1");
+
+                break;
+
+            case R.id.btn_two:
+                if ("0".equals(etInput.getText().toString().trim())) {
+                    break;
+                }
+                clickNum("2");
+
+                break;
+
+            case R.id.btn_three:
+                if ("0".equals(etInput.getText().toString().trim())) {
+                    break;
+                }
+                clickNum("3");
+
+
+                break;
+
+            case R.id.btn_four:
+                if ("0".equals(etInput.getText().toString().trim())) {
+                    break;
+                }
+                clickNum("4");
+
+
+                break;
+
+            case R.id.btn_five:
+                if ("0".equals(etInput.getText().toString().trim())) {
+                    break;
+                }
+                clickNum("5");
+
+                break;
+
+            case R.id.btn_six:
+                if ("0".equals(etInput.getText().toString().trim())) {
+                    break;
+                }
+                clickNum("6");
+
+                break;
+
+            case R.id.btn_seven:
+                if ("0".equals(etInput.getText().toString().trim())) {
+                    break;
+                }
+                clickNum("7");
+
+                break;
+
+            case R.id.btn_eight:
+                if ("0".equals(etInput.getText().toString().trim())) {
+                    break;
+                }
+                clickNum("8");
+
+                break;
+
+            case R.id.btn_nine:
+                if ("0".equals(etInput.getText().toString().trim())) {
+                    break;
+                }
+                clickNum("9");
+
+                break;
+
+            case R.id.btn_zero:
+                // 第一个数字按下0的话，第二个数字只能按小数点
+                if ("0".equals(etInput.getText().toString().trim())) {
+                    break;
+                }
+                etInput.setText(etInput.getText().toString().trim() + "0");
+                etInput.setSelection(etInput.getText().length());
+                break;
+
+            case R.id.btn_dot:
+                //第一个字符不能按 小数点
+                String mynumdot = etInput.getText().toString().trim();
+                if (mynumdot.length() == 0) {
+                    break;
+                }
+                onlyOneDot(mynumdot);
+                break;
+
 //            case R.id.tv_nums:
 //                numsBackground();
 //                break;
-//
+
 //            case R.id.tv_price:
 //                priceBackground();
 //                break;
@@ -488,19 +553,19 @@ public class MainActivity extends AppCompatActivity implements
 //            case R.id.tv_plus_jian:
 //                plusjianBackground();
 //                break;
-//
-//            case R.id.iv_delete:
-//                String numde = etInput.getText().toString().trim();
-//                if (numde.length() > 0) {
-//                    etInput.setText(numde.substring(0, numde.length() - 1));
-//                    etInput.setSelection(etInput.getText().length());
-//                }
-//                break;
-////            case R.id.btn_label:
-////                System.out.println("=====----");
-////                break;
-//
-//        }
+
+            case R.id.ibtn_delete:
+                String numde = etInput.getText().toString().trim();
+                if (numde.length() > 0) {
+                    etInput.setText(numde.substring(0, numde.length() - 1));
+                    etInput.setSelection(etInput.getText().length());
+                }
+                break;
+//            case R.id.btn_label:
+//                System.out.println("=====----");
+//               break;
+
+        }
 
     }
 
@@ -539,23 +604,24 @@ public class MainActivity extends AppCompatActivity implements
 //        tvZhekou.setBackgroundResource(R.drawable.textview_border);
 //        tvPlusjian.setBackgroundResource(R.drawable.textview_border_special_btn);
 //    }
-//
-//    public void onlyOneDot(String mynumdot) {
-//        if (mynumdot.length() > 0 && (mynumdot.subSequence(0, 1).equals("."))) {
-//            etInput.setText("");
-//        }
-//        if (!mynumdot.contains(".")) {
-//            mynumdot += ".";
-//            etInput.setText(mynumdot);
-//            etInput.setSelection(etInput.getText().length());
-//        }
-//
-//    }
-//
-//    public void clickNum(String num) {
-//        etInput.setText(etInput.getText().toString().trim() + num);
-//        etInput.setSelection(etInput.getText().length());
-//    }
+
+    public void onlyOneDot(String mynumdot) {
+        if (mynumdot.length() > 0 && (mynumdot.subSequence(0, 1).equals("."))) {
+            etInput.setText("");
+        }
+        if (!mynumdot.contains(".")) {
+            mynumdot += ".";
+            etInput.setText(mynumdot);
+            etInput.setSelection(etInput.getText().length());
+        }
+
+    }
+
+    public void clickNum(String num) {
+        etInput.setText(etInput.getText().toString().trim() + num);
+        etInput.setSelection(etInput.getText().length());
+    }
+
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
