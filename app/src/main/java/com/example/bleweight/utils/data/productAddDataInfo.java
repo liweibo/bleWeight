@@ -8,19 +8,19 @@ public class productAddDataInfo {
 
     private String prodName;
 
-    private int danjia;
+    private String danjia;
 
-    private int jianshu;
+    private String jianshu;
 
-    private double zhongliang;
-    private int xiaoji;
+    private String zhongliang;
+    private String xiaoji;
 
 
     public productAddDataInfo(String xuhao, String prodName,
-                              int danjia,
-                              int jianshu,
-                              double zhongliang,
-                              int xiaoji) {
+                              String danjia,
+                              String jianshu,
+                              String zhongliang,
+                              String xiaoji) {
         this.xuhao = xuhao;
         this.prodName = prodName;
         this.danjia = danjia;
@@ -49,38 +49,38 @@ public class productAddDataInfo {
         return this;
     }
 
-    public int getdanjia() {
+    public String getdanjia() {
         return danjia;
     }
 
-    public productAddDataInfo setdanjia(int danjia) {
+    public productAddDataInfo setdanjia(String danjia) {
         this.danjia = danjia;
         return this;
     }
 
-    public int getjianshu() {
+    public String getjianshu() {
         return jianshu;
     }
 
-    public productAddDataInfo setjianshu(int jianshu) {
+    public productAddDataInfo setjianshu(String jianshu) {
         this.jianshu = jianshu;
         return this;
     }
 
-    public double getzhongliang() {
+    public String getzhongliang() {
         return zhongliang;
     }
 
-    public productAddDataInfo setzhongliang(double zhongliang) {
+    public productAddDataInfo setzhongliang(String zhongliang) {
         this.zhongliang = zhongliang;
         return this;
     }
 
-    public int getXiaoji() {
+    public String getXiaoji() {
         return xiaoji;
     }
 
-    public productAddDataInfo setxiaoji(int xiaoji) {
+    public productAddDataInfo setxiaoji(String xiaoji) {
         this.xiaoji = xiaoji;
         return this;
     }

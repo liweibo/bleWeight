@@ -24,10 +24,10 @@ public class modeldataPage {
             R.drawable.ic_qiezi, R.drawable.ic_qiezi, R.drawable.ic_qiezi, R.drawable.ic_qiezi, R.drawable.ic_qiezi, R.drawable.ic_qiezi, R.drawable.ic_qiezi, R.drawable.ic_qiezi, R.drawable.ic_qiezi, R.drawable.ic_qiezi, R.drawable.ic_qiezi,
             R.drawable.ic_qiezi, R.drawable.ic_qiezi, R.drawable.ic_qiezi, R.drawable.ic_qiezi, R.drawable.ic_qiezi, R.drawable.ic_qiezi, R.drawable.ic_qiezi, R.drawable.ic_qiezi, R.drawable.ic_qiezi};
 
-    static public String productPicitwoTv[] = {"茄子1", "茄子2", "茄子3", "茄子4", "茄子5", "茄子6", "茄子7",
-            "茄子8", "茄子9", "茄子10", "茄子11", "茄子12", "茄子13", "茄子14", "茄子15",
-            "茄子16", "茄子17", "茄子18",
-            "茄子19", "茄子20"};
+    static public String productPicitwoTv[] = {"2茄子1", "2茄子2", "茄子3", "茄子4", "茄子5", "茄子6", "茄子7",
+            "茄子8", "2茄子9", "茄子10", "茄子11", "茄子12", "茄子13", "茄子14", "茄子15",
+            "茄子16", "2茄子17", "茄子18",
+            "茄子19", "2茄子20"};
 
 
     //批次..........

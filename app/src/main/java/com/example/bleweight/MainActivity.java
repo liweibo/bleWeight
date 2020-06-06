@@ -2,10 +2,7 @@ package com.example.bleweight;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,12 +14,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -37,6 +32,9 @@ import com.example.bleweight.fragment.OrderComputeFragment;
 import com.example.bleweight.fragment.OrderNoProductFragment;
 import com.example.bleweight.utils.MultiPage;
 import com.example.bleweight.utils.XToastUtils;
+import com.example.bleweight.utils.data.RecyclerItemDataProvider;
+import com.example.bleweight.utils.data.productAddDataInfo;
+import com.example.bleweight.utils.modeldataPage;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.xuexiang.xui.utils.ResUtils;
@@ -44,9 +42,6 @@ import com.xuexiang.xui.utils.SnackbarUtils;
 import com.xuexiang.xui.utils.StatusBarUtils;
 import com.xuexiang.xui.widget.button.RippleView;
 import com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner;
-import com.xuexiang.xui.widget.toast.XToast;
-import com.example.bleweight.utils.modeldataPage;
-import com.yanzhenjie.recyclerview.OnItemClickListener;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -58,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements
         View.OnClickListener, TabLayout.OnTabSelectedListener {
     Button tvOne, tvTwo, tvThree, tvFour, tvFive, tvSix, tvSeven, tvEight, tvNine, tvZero, tvDot;
     ImageButton tvDele;
-
+    MyApplication apps;
     EditText etInput;
     EditText text_input_danjia;
     EditText text_input_jianshu;
@@ -83,10 +78,10 @@ public class MainActivity extends AppCompatActivity implements
     private static final String CURRENT_FRAGMENT = "STATE_FRAGMENT_SHOW";
     FragmentManager fragmentManager;
     FragmentTransaction transaction;
-    private LinearLayout top_on_left;
+    public LinearLayout top_on_left;
     private LinearLayout main_left;
-    private LinearLayout ll_top_on_right;
-    private LinearLayout tv_status_right_top;
+    public LinearLayout ll_top_on_right;
+    public LinearLayout tv_status_right_top;
     private LinearLayout ll_close_bggray;
 
     CardView card_view_product;
@@ -98,6 +93,8 @@ public class MainActivity extends AppCompatActivity implements
     Button jizhong_btn;
 
     FloatingActionButton fab_confirmbtn;
+    public View layout_right_mengban;
+    public TextView click_pro_tv;
 
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -107,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements
 
         setContentView(R.layout.activity_main);
         StatusBarUtils.fullScreen(this);
-
+        apps = (MyApplication) getApplication();
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
 
@@ -167,12 +164,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void setClick() {
-//        int tvHei = getTvheight();
-//        float textHeight = (float) ((34 + 0.00000007) / 0.7535);
-//        System.out.println("textHeight:"+textHeight);
-//        LinearLayout.LayoutParams linearParams =(LinearLayout.LayoutParams) findViewById(R.id.ll_cheng_kg).getLayoutParams();
-//        linearParams.height = (int) textHeight;
-//btn_new_order.setOnClickListener(this);
+
         tvOne.setOnClickListener(this);
         tvTwo.setOnClickListener(this);
         tvThree.setOnClickListener(this);
@@ -195,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements
 
         ll_allFragment = findViewById(R.id.frag);
 
-//        etInput = findViewById(R.id.et_input);
+
         tvOne = findViewById(R.id.btn_one);
         tvTwo = findViewById(R.id.btn_two);
         tvThree = findViewById(R.id.btn_three);
@@ -208,14 +200,9 @@ public class MainActivity extends AppCompatActivity implements
         tvZero = findViewById(R.id.btn_zero);
         tvDot = findViewById(R.id.btn_dot);
         tvDele = findViewById(R.id.ibtn_delete);
-//        tvNums = findViewById(R.id.btn_nums);
-//        tvPrice = findViewById(R.id.tv_price);
-//        tvZhekou = findViewById(R.id.tv_zhekou);
-//        tvPlusjian = findViewById(R.id.tv_plus_jian);
 
-//        btnLabel = findViewById(R.id.btn_label);
-//        numsBackground();//默认选中 "数量" 的背景为蓝色；
         mMaterialSpinner = findViewById(R.id.spinner);
+        click_pro_tv = findViewById(R.id.click_pro_tv);
 
         //tab
         tab_layout = findViewById(R.id.tab_layout);
@@ -224,6 +211,7 @@ public class MainActivity extends AppCompatActivity implements
         recycler_product = findViewById(R.id.recycler_product);
         top_on_left = findViewById(R.id.top_on_left);
         ll_top_on_right = findViewById(R.id.ll_top_on_right);
+        layout_right_mengban = findViewById(R.id.layout_right_mengban);
         tv_status_right_top = findViewById(R.id.tv_status_right_top);
         main_left = findViewById(R.id.main_left);
         card_view_product = findViewById(R.id.card_view_product);
@@ -256,9 +244,49 @@ public class MainActivity extends AppCompatActivity implements
         fab_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                top_on_left.setVisibility(View.INVISIBLE);
-                ll_top_on_right.setVisibility(View.INVISIBLE);
-                tv_status_right_top.setVisibility(View.INVISIBLE);
+                top_on_left.setVisibility(View.GONE);
+                layout_right_mengban.setVisibility(View.GONE);
+                tv_status_right_top.setVisibility(View.GONE);
+            }
+        });
+        //商品计件，计重信息提交至商品列表中的某个商品
+        fab_confirmbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String danjia = text_input_danjia.getText().toString();
+                String jianshu = text_input_jianshu.getText().toString();
+                String zhongliang = text_input_zhongliang.getText().toString();
+                boolean jijianbool = apps.isJijianbtn();
+                int adapPos = apps.getAdapterPos();
+                productAddDataInfo dataInfo = RecyclerItemDataProvider.getZhongxinfachuListNewInfos().get(adapPos);
+                if (jijianbool) {//计件
+
+                    //单价  件数  都有值
+                    if (!danjia.equals("") && !jianshu.equals("")) {
+                        dataInfo.setdanjia(danjia);
+                        dataInfo.setjianshu(jianshu);
+                        dataInfo.setzhongliang("-");
+                        hideMengban();
+                    } else {
+                        XToastUtils.info("请输入单价，件数哦~");
+                    }
+
+                } else {//计重
+                    //单价  重量  都有值
+                    if (!danjia.equals("") && !zhongliang.equals("")) {
+                        dataInfo.setdanjia(danjia);
+                        dataInfo.setzhongliang(jianshu);
+                        dataInfo.setjianshu("-");
+                        hideMengban();
+
+                    } else {
+                        XToastUtils.info("请输入单价，重量哦~");
+                    }
+                }
+
+                //刷新数据
+                new OrderNoProductFragment().mAdapter.refresh(RecyclerItemDataProvider.getZhongxinfachuListNewInfos());
+
             }
         });
         spinner_material.setOnItemSelectedListener(
@@ -274,6 +302,7 @@ public class MainActivity extends AppCompatActivity implements
         jizhong_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                apps.setJijianbtn(false);
                 framelayout_jijian.setVisibility(View.GONE);
                 framlayout_jizhong.setVisibility(View.VISIBLE);
 
@@ -288,6 +317,7 @@ public class MainActivity extends AppCompatActivity implements
         jijian_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                apps.setJijianbtn(true);
                 framelayout_jijian.setVisibility(View.VISIBLE);
                 framlayout_jizhong.setVisibility(View.GONE);
 
@@ -319,10 +349,6 @@ public class MainActivity extends AppCompatActivity implements
         etInput = text_input_danjia;
         text_input_danjia.setFocusable(true);
 
-
-//        text_input_danjia.setOnClickListener(this);
-//        text_input_zhongliang.setOnClickListener(this);
-//        text_input_jianshu.setOnClickListener(this);
 
         text_input_danjia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -357,6 +383,11 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
+    public void hideMengban() {
+        top_on_left.setVisibility(View.GONE);
+        layout_right_mengban.setVisibility(View.GONE);
+        tv_status_right_top.setVisibility(View.GONE);
+    }
 
     public void initviews() {
 
@@ -402,7 +433,12 @@ public class MainActivity extends AppCompatActivity implements
         mRecyclerAdapter.setOnItemMyClickListener(new PiciProductAdapter.OnItemMyClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                XToastUtils.success("点击了位置：" + position);
+                if (position < modeldataPage.getProductTv().length && position >= 0) {
+                    String tv = modeldataPage.getProductTv()[position];
+
+                    whenClickProd(tv);
+
+                }
 
             }
         });
@@ -430,21 +466,6 @@ public class MainActivity extends AppCompatActivity implements
 
 
         switch (v.getId()) {
-            case R.id.text_input_danjia:
-                etInput = text_input_danjia;
-
-                break;
-            case R.id.text_input_zhongliang:
-                etInput = text_input_zhongliang;
-
-
-                break;
-            case R.id.text_input_jianshu:
-                etInput = text_input_jianshu;
-                XToastUtils.success("000000000");
-
-                break;
-
             case R.id.btn_one:
                 //表示按了0之后，后面的只能按. 不能按1-9的数字
                 if ("0".equals(etInput.getText().toString().trim())) {
@@ -538,22 +559,6 @@ public class MainActivity extends AppCompatActivity implements
                 onlyOneDot(mynumdot);
                 break;
 
-//            case R.id.tv_nums:
-//                numsBackground();
-//                break;
-
-//            case R.id.tv_price:
-//                priceBackground();
-//                break;
-//
-//            case R.id.tv_zhekou:
-//                zhekouBackground();
-//                break;
-//
-//            case R.id.tv_plus_jian:
-//                plusjianBackground();
-//                break;
-
             case R.id.ibtn_delete:
                 String numde = etInput.getText().toString().trim();
                 if (numde.length() > 0) {
@@ -561,49 +566,12 @@ public class MainActivity extends AppCompatActivity implements
                     etInput.setSelection(etInput.getText().length());
                 }
                 break;
-//            case R.id.btn_label:
-//                System.out.println("=====----");
-//               break;
+
 
         }
 
     }
 
-//    public void numsBackground() {
-//        editor.putInt("selectOne", 0);
-//        editor.commit();
-//        tvNums.setBackgroundResource(R.drawable.textview_border_special_btn);
-//        tvPrice.setBackgroundResource(R.drawable.textview_border);
-//        tvZhekou.setBackgroundResource(R.drawable.textview_border);
-//        tvPlusjian.setBackgroundResource(R.drawable.textview_border);
-//    }
-//
-//    public void priceBackground() {
-//        editor.putInt("selectOne", 1);
-//        editor.commit();
-//        tvNums.setBackgroundResource(R.drawable.textview_border);
-//        tvPrice.setBackgroundResource(R.drawable.textview_border_special_btn);
-//        tvZhekou.setBackgroundResource(R.drawable.textview_border);
-//        tvPlusjian.setBackgroundResource(R.drawable.textview_border);
-//    }
-//
-//    public void zhekouBackground() {
-//        editor.putInt("selectOne", 2);
-//        editor.commit();
-//        tvNums.setBackgroundResource(R.drawable.textview_border);
-//        tvPrice.setBackgroundResource(R.drawable.textview_border);
-//        tvZhekou.setBackgroundResource(R.drawable.textview_border_special_btn);
-//        tvPlusjian.setBackgroundResource(R.drawable.textview_border);
-//    }
-//
-//    public void plusjianBackground() {
-//        editor.putInt("selectOne", 3);
-//        editor.commit();
-//        tvNums.setBackgroundResource(R.drawable.textview_border);
-//        tvPrice.setBackgroundResource(R.drawable.textview_border);
-//        tvZhekou.setBackgroundResource(R.drawable.textview_border);
-//        tvPlusjian.setBackgroundResource(R.drawable.textview_border_special_btn);
-//    }
 
     public void onlyOneDot(String mynumdot) {
         if (mynumdot.length() > 0 && (mynumdot.subSequence(0, 1).equals("."))) {
@@ -625,31 +593,57 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
+        //下面这段代码根据实际业务改成for循环 取批次 取mRecyclerAdapter，取setOnItemMyClickListener
+
         if (tab.getText().equals("批次2")) {
-            recycler_product.setAdapter(mTwoRecyclerAdapter);
-            mTwoRecyclerAdapter.setOnItemMyClickListener(new PiciProductAdapter.OnItemMyClickListener() {
+            mRecyclerAdapter = new PiciProductAdapter(this,
+                    modeldataPage.getIconA(), modeldataPage.getProductPicitwoTv());
+
+            recycler_product.setAdapter(mRecyclerAdapter);
+
+            mRecyclerAdapter.setOnItemMyClickListener(new PiciProductAdapter.OnItemMyClickListener() {
                 @Override
                 public void onItemClick(View view, int position) {
-                    XToastUtils.success("two点击了位置：" + position);
+                    if (position < modeldataPage.getProductTv().length && position >= 0) {
+                        String tv = modeldataPage.getProductPicitwoTv()[position];
+                        whenClickProd(tv);
+                    }
+
 
                 }
             });
+
         } else if (tab.getText().equals("批次1")) {
+            mRecyclerAdapter = new PiciProductAdapter(this,
+                    modeldataPage.getIconA(), modeldataPage.getProductTv());
+
+
+            recycler_product.setAdapter(mRecyclerAdapter);
+
+            mRecyclerAdapter.setOnItemMyClickListener(new PiciProductAdapter.OnItemMyClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    if (position < modeldataPage.getProductTv().length && position >= 0) {
+                        String tv = modeldataPage.getProductTv()[position];
+                        whenClickProd(tv);
+                    }
+
+                }
+            });
+
+
+        } else {
+            mRecyclerAdapter = new PiciProductAdapter(this,
+                    modeldataPage.getIconA(), modeldataPage.getProductPicitwoTv());
 
             recycler_product.setAdapter(mRecyclerAdapter);
             mRecyclerAdapter.setOnItemMyClickListener(new PiciProductAdapter.OnItemMyClickListener() {
                 @Override
                 public void onItemClick(View view, int position) {
-                    XToastUtils.success("点击了位置：" + position);
-
-                }
-            });
-        } else {
-            recycler_product.setAdapter(mTwoRecyclerAdapter);
-            mRecyclerAdapter.setOnItemMyClickListener(new PiciProductAdapter.OnItemMyClickListener() {
-                @Override
-                public void onItemClick(View view, int position) {
-                    XToastUtils.success("another点击了位置：" + position);
+                    if (position < modeldataPage.getProductPicitwoTv().length && position >= 0) {
+                        String tv = modeldataPage.getProductPicitwoTv()[position];
+                        whenClickProd(tv);
+                    }
 
                 }
             });
@@ -668,6 +662,13 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
+
+    public void whenClickProd(String click_pro_tv_string) {
+        top_on_left.setVisibility(View.VISIBLE);
+        layout_right_mengban.setVisibility(View.VISIBLE);
+        tv_status_right_top.setVisibility(View.VISIBLE);
+        click_pro_tv.setText(click_pro_tv_string);
+    }
 
     public void showNoProduct() {
         currentIndex = 1;

@@ -5,10 +5,37 @@ import android.app.Application;
 import com.xuexiang.xui.XUI;
 
 public class MyApplication extends Application {
-    public int backSelect = 0;//0-数量 1-价格  2-折扣  3-+/-
-
+    public String clickedPro = "test";
+    public boolean isJijianbtn = true;
+    public int adapterPos=-1;
     public MyApplication() {
 
+    }
+
+    public String getClickedPro() {
+        return clickedPro;
+    }
+
+    public void setClickedPro(String clickedPro) {
+        this.clickedPro = clickedPro;
+    }
+
+
+    //是否点击计件按钮，并显示计件按钮
+    public boolean isJijianbtn() {
+        return isJijianbtn;
+    }
+
+    public void setJijianbtn(boolean jijian) {
+        isJijianbtn = jijian;
+    }
+
+    public int getAdapterPos() {
+        return adapterPos;
+    }
+
+    public void setAdapterPos(int adapterPos) {
+        this.adapterPos = adapterPos;
     }
 
 

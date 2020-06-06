@@ -10,14 +10,177 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#fafafa"
-            android:clickable="false"
             android:orientation="vertical">
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="4dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:background="#00796B"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|left"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="2dp"
+                            android:src="@mipmap/ic_signal_wifi" />
+
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="4dp"
+                            android:src="@mipmap/ic_signal_cellular" />
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="8dp"
+                            android:src="@mipmap/ic_battery" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="5月7日 周四 下午 3:17"
+                            android:textColor="#ffffffff"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:src="@mipmap/longzhanggui" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|right"
+                        android:gravity="center">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="16dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="4dp"
+                                android:src="@mipmap/location" />
+
+                            <TextView
+                                android:id="@+id/tv_zongdian"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="?android:attr/selectableItemBackground"
+                                android:text="总店"
+                                android:textColor="#ffffffff"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="16dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="4dp"
+                                android:src="@mipmap/peopple" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="工号001"
+                                android:textColor="#ffffffff"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="16dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="4dp"
+                                android:src="@mipmap/setting" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="设置"
+                                android:textColor="#ffffffff"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!--状态栏右边1/3屏幕宽度蒙版-->
+                    <LinearLayout
+                        android:id="@+id/tv_status_right_top"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_gravity="right"
+                        android:background="#FF00796B"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/click_pro_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="大蒜"
+                            android:textColor="#ffffffff"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+
+                </FrameLayout>
+            </androidx.cardview.widget.CardView>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -35,106 +198,9 @@
 
                     <!--            秤-->
 
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                        <!--                按批次时填充的整个布局-->
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/card_view_product"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-
-                            android:layout_gravity="center_vertical"
-                            android:layout_margin="16dp"
-                            android:gravity="center_vertical"
-                            app:cardCornerRadius="4dp"
-                            app:cardElevation="4dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:orientation="horizontal">
-
-                                        <com.google.android.material.tabs.TabLayout
-                                            android:id="@+id/tab_layout"
-                                            style="@style/TabLayoutStyle"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="?attr/xui_actionbar_height" />
-                                    </LinearLayout>
-
-                                    <!--分割线-->
-                                    <LinearLayout
-                                        android:layout_width="120dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_gravity="center_vertical|right">
-
-
-                                        <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
-                                            android:id="@+id/spinner"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="?attr/xui_actionbar_height"
-                                            android:textColor="@color/xui_config_color_edittext_textcolor"
-                                            android:textSize="22sp"
-                                            app:ms_dropdown_bg="@drawable/drop_down"
-                                            app:ms_dropdown_height="wrap_content"
-                                            app:ms_text_color="@color/ms_dropdown_item_textcolor"
-
-                                            />
-                                    </LinearLayout>
-
-                                    <TextView
-                                        android:layout_width="0.5dp"
-                                        android:layout_height="match_parent"
-                                        android:background="#A9A9A9" />
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:padding="20dp">
-
-                                    <androidx.recyclerview.widget.RecyclerView
-                                        android:id="@+id/recycler_product"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent" />
-                                </LinearLayout>
-
-
-                                <!--                    商品显示-->
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0.5dp"
-                                    android:background="#A9A9A9" />
-
-
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
-
-                        <!--                bu按批次时填充的整个布局-->
-
-                    </FrameLayout>
-
-
-                    <!--        左边秤 以下的部分-->
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="64dp"
-
                         android:layout_gravity="center_vertical"
                         android:layout_margin="16dp"
                         android:gravity="center_vertical"
@@ -329,12 +395,111 @@
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
+
+
+                    <!--        左边秤 以下的部分-->
+
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <!--                按批次时填充的整个布局-->
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/card_view_product"
+
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="16dp"
+                            android:gravity="center_vertical"
+                            app:cardCornerRadius="4dp"
+                            app:cardElevation="4dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:orientation="horizontal">
+
+                                        <com.google.android.material.tabs.TabLayout
+                                            android:id="@+id/tab_layout"
+                                            style="@style/TabLayoutStyle"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="?attr/xui_actionbar_height" />
+                                    </LinearLayout>
+
+                                    <!--分割线-->
+                                    <TextView
+                                        android:layout_width="0.5dp"
+                                        android:layout_height="match_parent"
+                                        android:background="#A9A9A9" />
+
+                                    <LinearLayout
+                                        android:layout_width="120dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center_vertical|right">
+
+
+                                        <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
+                                            android:id="@+id/spinner"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="?attr/xui_actionbar_height"
+                                            android:textColor="@color/xui_config_color_edittext_textcolor"
+                                            android:textSize="22sp"
+                                            app:ms_dropdown_bg="@drawable/drop_down"
+                                            app:ms_dropdown_height="wrap_content"
+                                            app:ms_text_color="@color/ms_dropdown_item_textcolor"
+
+                                            />
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.5dp"
+                                    android:background="#A9A9A9" />
+
+
+                                <!--                    商品显示-->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:padding="20dp">
+
+                                    <androidx.recyclerview.widget.RecyclerView
+                                        android:id="@+id/recycler_product"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <!--                bu按批次时填充的整个布局-->
+
+                    </FrameLayout>
+
+
                 </LinearLayout>
                 <!--分割线-->
 
 
                 <!--右部分-->
-
 
                 <LinearLayout
                     android:id="@+id/main_right"
@@ -350,7 +515,8 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
 
                             <androidx.cardview.widget.CardView
                                 android:layout_width="match_parent"
@@ -371,6 +537,7 @@
 
                                 </LinearLayout>
                             </androidx.cardview.widget.CardView>
+
 
                             <androidx.cardview.widget.CardView
                                 android:layout_width="match_parent"
@@ -488,658 +655,36 @@
 
                                 </LinearLayout>
                             </androidx.cardview.widget.CardView>
+
                         </LinearLayout>
 
-                        <!--                        右边蒙版-->
-                        <LinearLayout
-                            android:id="@+id/ll_top_on_right"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:background="#fff"
-                            android:clickable="true"
-                            android:orientation="vertical">
+                        <!--   右边蒙版-->
+                        <include
+                            android:visibility="gone"
+                            android:id="@+id/layout_right_mengban"
+                            layout="@layout/keyboard_16" />
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
 
-                                <Button
-                                    android:id="@+id/jijian_btn"
-                                    android:layout_width="80dp"
-                                    android:layout_height="36dp"
-                                    android:layout_marginLeft="16dp"
-                                    android:layout_marginTop="16dp"
-                                    android:layout_marginRight="8dp"
-                                    android:layout_marginBottom="16dp"
-                                    android:background="@drawable/ripple_bg_jijian"
-                                    android:text="计件"
-                                    android:textColor="#ff00796b"
-                                    android:textSize="14sp" />
-
-                                <Button
-                                    android:id="@+id/jizhong_btn"
-                                    android:layout_width="80dp"
-                                    android:layout_height="36dp"
-                                    android:layout_marginTop="16dp"
-                                    android:layout_marginBottom="16dp"
-                                    android:background="@drawable/ripple_bg_jizhong"
-                                    android:text="计重"
-                                    android:textColor="#8a000000"
-                                    android:textSize="14sp" />
-                            </LinearLayout>
-
-                            <!-- 输入框-->
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <FrameLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="right|bottom"
-                                        android:layout_marginRight="18dp"
-                                        android:layout_marginBottom="12dp"
-                                        android:text="元/kg"
-                                        android:textColor="#8a000000"
-                                        android:textSize="14sp" />
-
-                                    <com.google.android.material.textfield.TextInputLayout
-                                        android:id="@+id/text_input_layout_danjia"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:paddingLeft="16dp"
-                                        android:paddingRight="16dp"
-                                        android:scrollbarAlwaysDrawHorizontalTrack="true">
-
-                                        <EditText
-                                            android:id="@+id/text_input_danjia"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="56dp"
-                                            android:hint="输入单价"
-                                            android:inputType="number"
-                                            android:textColor="#de000000"
-                                            android:textColorHint="#2E000000"
-                                            android:textSize="34sp" />
-
-                                    </com.google.android.material.textfield.TextInputLayout>
-                                </FrameLayout>
-
-                                <FrameLayout
-                                    android:id="@+id/framelayout_jijian"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="right|bottom"
-                                        android:layout_marginRight="18dp"
-
-                                        android:layout_marginBottom="12dp"
-                                        android:text="件"
-                                        android:textColor="#8a000000"
-                                        android:textSize="14sp" />
-
-                                    <com.google.android.material.textfield.TextInputLayout
-                                        android:id="@+id/text_input_layout_jianshu"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="15dp"
-                                        android:paddingLeft="16dp"
-                                        android:paddingRight="16dp"
-                                        android:scrollbarAlwaysDrawHorizontalTrack="true">
-
-                                        <EditText
-                                            android:id="@+id/text_input_jianshu"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="56dp"
-                                            android:hint="输入件数"
-                                            android:inputType="number"
-                                            android:textColor="#de000000"
-                                            android:textColorHint="#2E000000"
-                                            android:textSize="34sp" />
-
-                                    </com.google.android.material.textfield.TextInputLayout>
-                                </FrameLayout>
-
-                                <FrameLayout
-
-                                    android:id="@+id/framlayout_jizhong"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <com.google.android.material.textfield.TextInputLayout
-
-                                        android:id="@+id/text_input_layout_zhongliang"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="15dp"
-                                        android:paddingLeft="16dp"
-                                        android:paddingRight="16dp"
-                                        android:scrollbarAlwaysDrawHorizontalTrack="true">
-
-                                        <EditText
-                                            android:id="@+id/text_input_zhongliang"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="56dp"
-                                            android:hint="获取重量"
-                                            android:inputType="number"
-                                            android:textColor="#de000000"
-                                            android:textColorHint="#2E000000"
-                                            android:textSize="34sp" />
-
-                                    </com.google.android.material.textfield.TextInputLayout>
-
-
-                                    <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
-                                        android:id="@+id/spinner_material"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="right|bottom"
-                                        android:layout_marginRight="18dp"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#8a000000"
-                                        android:textSize="14sp"
-                                        app:ms_entries="@array/sort_mode_entryexample" />
-
-                                </FrameLayout>
-                            </LinearLayout>
-
-                            <!--                            键盘-->
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_marginTop="30dp"
-                                android:layout_marginBottom="30dp"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
-                                <!--键盘数字-->
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-                                    <!--第一排数字-->
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-
-                                        android:layout_height="0dp"
-                                        android:layout_weight="1">
-
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_gravity="center"
-                                            android:layout_weight="1"
-                                            android:gravity="center">
-
-                                            <Button
-                                                android:id="@+id/btn_seven"
-                                                android:layout_width="56dp"
-                                                android:layout_height="56dp"
-                                                android:background="@drawable/ripple_bg_numberkeyboard"
-                                                android:text="7"
-                                                android:textColor="#8a000000"
-                                                android:textSize="34sp" />
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_gravity="center"
-                                            android:layout_weight="1"
-                                            android:gravity="center">
-
-                                            <Button
-                                                android:id="@+id/btn_eight"
-
-                                                android:layout_width="56dp"
-
-                                                android:layout_height="56dp"
-                                                android:background="@drawable/ripple_bg_numberkeyboard"
-                                                android:text="8"
-                                                android:textColor="#8a000000"
-                                                android:textSize="34sp" />
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_gravity="center"
-                                            android:layout_weight="1"
-                                            android:gravity="center">
-
-                                            <Button
-                                                android:id="@+id/btn_nine"
-
-                                                android:layout_width="56dp"
-
-                                                android:layout_height="56dp"
-                                                android:background="@drawable/ripple_bg_numberkeyboard"
-                                                android:text="9"
-                                                android:textColor="#8a000000"
-                                                android:textSize="34sp" />
-                                        </LinearLayout>
-
-
-                                    </LinearLayout>
-
-                                    <!--第2排数字-->
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="0dp"
-                                        android:layout_weight="1">
-
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_gravity="center"
-                                            android:layout_weight="1"
-                                            android:gravity="center">
-
-                                            <Button
-                                                android:id="@+id/btn_four"
-
-                                                android:layout_width="56dp"
-                                                android:layout_height="56dp"
-                                                android:background="@drawable/ripple_bg_numberkeyboard"
-                                                android:text="4"
-                                                android:textColor="#8a000000"
-                                                android:textSize="34sp" />
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_gravity="center"
-                                            android:layout_weight="1"
-                                            android:gravity="center">
-
-                                            <Button
-                                                android:id="@+id/btn_five"
-
-                                                android:layout_width="56dp"
-
-                                                android:layout_height="56dp"
-                                                android:background="@drawable/ripple_bg_numberkeyboard"
-                                                android:text="5"
-                                                android:textColor="#8a000000"
-                                                android:textSize="34sp" />
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_gravity="center"
-                                            android:layout_weight="1"
-                                            android:gravity="center">
-
-                                            <Button
-                                                android:id="@+id/btn_six"
-
-                                                android:layout_width="56dp"
-
-                                                android:layout_height="56dp"
-                                                android:background="@drawable/ripple_bg_numberkeyboard"
-                                                android:text="6"
-                                                android:textColor="#8a000000"
-                                                android:textSize="34sp" />
-                                        </LinearLayout>
-
-                                    </LinearLayout>
-
-
-                                    <!--第3排数字-->
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-
-                                        android:layout_height="0dp"
-                                        android:layout_weight="1">
-
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_gravity="center"
-                                            android:layout_weight="1"
-                                            android:gravity="center">
-
-                                            <Button
-                                                android:id="@+id/btn_one"
-
-                                                android:layout_width="56dp"
-                                                android:layout_height="56dp"
-                                                android:background="@drawable/ripple_bg_numberkeyboard"
-                                                android:text="1"
-                                                android:textColor="#8a000000"
-                                                android:textSize="34sp" />
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_gravity="center"
-                                            android:layout_weight="1"
-                                            android:gravity="center">
-
-                                            <Button
-                                                android:id="@+id/btn_two"
-
-                                                android:layout_width="56dp"
-
-                                                android:layout_height="56dp"
-                                                android:background="@drawable/ripple_bg_numberkeyboard"
-                                                android:text="2"
-                                                android:textColor="#8a000000"
-                                                android:textSize="34sp" />
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_gravity="center"
-                                            android:layout_weight="1"
-                                            android:gravity="center">
-
-                                            <Button
-                                                android:id="@+id/btn_three"
-
-                                                android:layout_width="56dp"
-
-                                                android:layout_height="56dp"
-                                                android:background="@drawable/ripple_bg_numberkeyboard"
-                                                android:text="3"
-                                                android:textColor="#8a000000"
-                                                android:textSize="34sp" />
-                                        </LinearLayout>
-
-                                    </LinearLayout>
-
-                                    <!--第4排数字-->
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-
-                                        android:layout_height="0dp"
-                                        android:layout_weight="1">
-
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_gravity="center"
-                                            android:layout_weight="1"
-                                            android:gravity="center">
-
-                                            <Button
-                                                android:id="@+id/btn_zero"
-
-                                                android:layout_width="56dp"
-                                                android:layout_height="56dp"
-                                                android:background="@drawable/ripple_bg_numberkeyboard"
-                                                android:text="0"
-                                                android:textColor="#8a000000"
-                                                android:textSize="34sp" />
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_gravity="center"
-                                            android:layout_weight="1"
-                                            android:gravity="center">
-
-                                            <Button
-                                                android:id="@+id/btn_dot"
-
-                                                android:layout_width="56dp"
-
-                                                android:layout_height="56dp"
-                                                android:background="@drawable/ripple_bg_numberkeyboard"
-                                                android:paddingBottom="6dp"
-                                                android:text="."
-                                                android:textColor="#8a000000"
-                                                android:textSize="40sp" />
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_gravity="center"
-                                            android:layout_weight="1"
-                                            android:gravity="center">
-
-                                            <ImageButton
-                                                android:id="@+id/ibtn_delete"
-
-                                                android:layout_width="56dp"
-                                                android:layout_height="56dp"
-                                                android:background="@drawable/ripple_bg_numberkeyboard"
-                                                android:src="@mipmap/ic_delete" />
-                                        </LinearLayout>
-
-                                    </LinearLayout>
-
-                                </LinearLayout>
-                                <!--箭头按钮-->
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="0.7">
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-                                        <!--        确认按钮-->
-                                        <com.google.android.material.floatingactionbutton.FloatingActionButton
-                                            android:id="@+id/fab_confirmbtn"
-                                            android:layout_gravity="bottom|end"
-                                            android:layout_width="56dp"
-                                            android:layout_height="56dp"
-                                            android:layout_marginLeft="100dp"
-
-                                            android:layout_marginRight="16dp"
-                                            android:layout_marginBottom="36dp"
-                                            android:src="@mipmap/confirmbtn"
-                                            app:backgroundTint="#FF9801"
-                                            app:rippleColor="#FFFF" />
-                                    </LinearLayout>
-
-                                </LinearLayout>
-                            </LinearLayout>
-
-                        </LinearLayout>
                     </FrameLayout>
-
-
                 </LinearLayout>
+
             </LinearLayout>
-
-
-            <!--    自定义状态栏 以下的布局  包含整个左部分，右部分-->
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                app:cardCornerRadius="0dp"
-                app:cardElevation="4dp">
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:background="#00796B"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:src="@mipmap/longzhanggui" />
-
-
-                    <LinearLayout
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical|left"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="2dp"
-                            android:src="@mipmap/ic_signal_wifi" />
-
-
-                        <ImageView
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="4dp"
-                            android:src="@mipmap/ic_signal_cellular" />
-
-                        <ImageView
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="8dp"
-                            android:src="@mipmap/ic_battery" />
-
-                        <TextView
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="5月7日 周四 下午 3:17"
-                            android:textColor="#ffffffff"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical|right"
-                        android:gravity="center">
-
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="16dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="16dp"
-                                android:layout_height="16dp"
-                                android:layout_gravity="center"
-                                android:layout_marginRight="4dp"
-                                android:src="@mipmap/location" />
-
-                            <TextView
-                                android:id="@+id/tv_zongdian"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="?android:attr/selectableItemBackground"
-                                android:text="总店"
-                                android:textColor="#ffffffff"
-                                android:textSize="14sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="16dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="16dp"
-                                android:layout_height="16dp"
-                                android:layout_gravity="center"
-                                android:layout_marginRight="4dp"
-                                android:src="@mipmap/peopple" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="工号001"
-                                android:textColor="#ffffffff"
-                                android:textSize="14sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="16dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="16dp"
-                                android:layout_height="16dp"
-                                android:layout_gravity="center"
-                                android:layout_marginRight="4dp"
-                                android:src="@mipmap/setting" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="设置"
-                                android:textColor="#ffffffff"
-                                android:textSize="14sp" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <!--状态栏右边1/3屏幕宽度蒙版-->
-                    <LinearLayout
-                        android:id="@+id/tv_status_right_top"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:layout_gravity="right"
-                        android:background="#FF00796B"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="大蒜"
-                            android:textColor="#ffffffff"
-                            android:textSize="20sp" />
-                    </LinearLayout>
-
-                </FrameLayout>
-            </androidx.cardview.widget.CardView>
-
-
         </LinearLayout>
 
 
         <!--        左边蒙版-->
         <LinearLayout
+            android:visibility="gone"
+            android:clickable="true"
             android:id="@+id/top_on_left"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="#80323232"
-            android:clickable="true"
             android:orientation="horizontal">
             <!--        退出按钮-->
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab_close"
+                android:clickable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|end"
@@ -1152,4 +697,6 @@
         </LinearLayout>
 
     </FrameLayout>
+
+
 </LinearLayout>

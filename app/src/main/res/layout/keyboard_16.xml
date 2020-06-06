@@ -5,440 +5,472 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/btn_gray"
-    android:orientation="vertical"
+    android:orientation="vertical">
 
-    android:padding="1px">
-    <!--第一行-->
+    <!--                        右边蒙版-->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:id="@+id/ll_top_on_right"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:clickable="true"
+        android:orientation="vertical">
 
-        <com.xuexiang.xui.widget.button.RippleView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            >
+            <Button
+                android:id="@+id/jijian_btn"
+                android:layout_width="80dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/ripple_bg_jijian"
+                android:text="计件"
+                android:textColor="#ff00796b"
+                android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/tv_one"
+            <Button
+                android:id="@+id/jizhong_btn"
+                android:layout_width="80dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/ripple_bg_jizhong"
+                android:text="计重"
+                android:textColor="#8a000000"
+                android:textSize="14sp" />
+        </LinearLayout>
 
+        <!-- 输入框-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@drawable/textview_border"
+                android:layout_height="wrap_content">
 
-                android:gravity="center"
-                android:text="1"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
-        </com.xuexiang.xui.widget.button.RippleView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginRight="18dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="元/kg"
+                    android:textColor="#8a000000"
+                    android:textSize="14sp" />
 
-        <com.xuexiang.xui.widget.button.RippleView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_input_layout_danjia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:scrollbarAlwaysDrawHorizontalTrack="true">
 
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-           >
+                    <EditText
+                        android:clickable="true"
+                        android:id="@+id/text_input_danjia"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:hint="输入单价"
+                        android:inputType="number"
+                        android:textColor="#de000000"
+                        android:textColorHint="#2E000000"
+                        android:textSize="34sp" />
 
-            <TextView
-                android:id="@+id/tv_two"
+                </com.google.android.material.textfield.TextInputLayout>
+            </FrameLayout>
 
+            <FrameLayout
+                android:id="@+id/framelayout_jijian"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@drawable/textview_border"
+                android:layout_height="wrap_content">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginRight="18dp"
 
-                android:gravity="center"
-                android:text="2"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
+                    android:layout_marginBottom="12dp"
+                    android:text="件"
+                    android:textColor="#8a000000"
+                    android:textSize="14sp" />
 
-        </com.xuexiang.xui.widget.button.RippleView>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_input_layout_jianshu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:scrollbarAlwaysDrawHorizontalTrack="true">
 
+                    <EditText
+                        android:clickable="true"
 
-        <com.xuexiang.xui.widget.button.RippleView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+                        android:id="@+id/text_input_jianshu"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:hint="输入件数"
+                        android:inputType="number"
+                        android:textColor="#de000000"
+                        android:textColorHint="#2E000000"
+                        android:textSize="34sp" />
 
+                </com.google.android.material.textfield.TextInputLayout>
+            </FrameLayout>
 
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            >
+            <FrameLayout
 
-            <TextView
-                android:id="@+id/tv_three"
-
+                android:id="@+id/framlayout_jizhong"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@drawable/textview_border"
+                android:layout_height="wrap_content">
 
-                android:gravity="center"
-                android:text="3"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
+                <com.google.android.material.textfield.TextInputLayout
 
-        </com.xuexiang.xui.widget.button.RippleView>
+                    android:id="@+id/text_input_layout_zhongliang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:scrollbarAlwaysDrawHorizontalTrack="true">
+
+                    <EditText
+                        android:clickable="true"
+
+                        android:id="@+id/text_input_zhongliang"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:hint="获取重量"
+                        android:inputType="number"
+                        android:textColor="#de000000"
+                        android:textColorHint="#2E000000"
+                        android:textSize="34sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
 
-        <com.xuexiang.xui.widget.button.RippleView
+                <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
+                    android:id="@+id/spinner_material"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginRight="18dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="#8a000000"
+                    android:textSize="14sp"
+                    app:ms_entries="@array/sort_mode_entryexample" />
 
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
+            </FrameLayout>
+        </LinearLayout>
+
+        <!--                            键盘-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
             android:layout_weight="1"
-            >
-
-            <TextView
-                android:id="@+id/tv_nums"
-
-                android:layout_width="match_parent"
+            android:orientation="horizontal">
+            <!--键盘数字-->
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@drawable/textview_border"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <!--第一排数字-->
+                <LinearLayout
+                    android:layout_width="match_parent"
 
-                android:gravity="center"
-                android:text="数量"
-                android:textColor="@android:color/black"
-                android:textSize="18sp" />
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
 
-        </com.xuexiang.xui.widget.button.RippleView>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center">
 
-    </LinearLayout>
+                        <Button
+                            android:id="@+id/btn_seven"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:background="@drawable/ripple_bg_numberkeyboard"
+                            android:text="7"
+                            android:textColor="#8a000000"
+                            android:textSize="34sp" />
+                    </LinearLayout>
 
-    <!--第2行-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/btn_eight"
+
+                            android:layout_width="56dp"
+
+                            android:layout_height="56dp"
+                            android:background="@drawable/ripple_bg_numberkeyboard"
+                            android:text="8"
+                            android:textColor="#8a000000"
+                            android:textSize="34sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/btn_nine"
+
+                            android:layout_width="56dp"
+
+                            android:layout_height="56dp"
+                            android:background="@drawable/ripple_bg_numberkeyboard"
+                            android:text="9"
+                            android:textColor="#8a000000"
+                            android:textSize="34sp" />
+                    </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+                </LinearLayout>
 
-        <com.xuexiang.xui.widget.button.RippleView
+                <!--第2排数字-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
 
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-           >
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center">
 
-            <TextView
-                android:id="@+id/tv_four"
+                        <Button
+                            android:id="@+id/btn_four"
 
-                android:layout_width="match_parent"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:background="@drawable/ripple_bg_numberkeyboard"
+                            android:text="4"
+                            android:textColor="#8a000000"
+                            android:textSize="34sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/btn_five"
+
+                            android:layout_width="56dp"
+
+                            android:layout_height="56dp"
+                            android:background="@drawable/ripple_bg_numberkeyboard"
+                            android:text="5"
+                            android:textColor="#8a000000"
+                            android:textSize="34sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/btn_six"
+
+                            android:layout_width="56dp"
+
+                            android:layout_height="56dp"
+                            android:background="@drawable/ripple_bg_numberkeyboard"
+                            android:text="6"
+                            android:textColor="#8a000000"
+                            android:textSize="34sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <!--第3排数字-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/btn_one"
+
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:background="@drawable/ripple_bg_numberkeyboard"
+                            android:text="1"
+                            android:textColor="#8a000000"
+                            android:textSize="34sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/btn_two"
+
+                            android:layout_width="56dp"
+
+                            android:layout_height="56dp"
+                            android:background="@drawable/ripple_bg_numberkeyboard"
+                            android:text="2"
+                            android:textColor="#8a000000"
+                            android:textSize="34sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/btn_three"
+
+                            android:layout_width="56dp"
+
+                            android:layout_height="56dp"
+                            android:background="@drawable/ripple_bg_numberkeyboard"
+                            android:text="3"
+                            android:textColor="#8a000000"
+                            android:textSize="34sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--第4排数字-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/btn_zero"
+
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:background="@drawable/ripple_bg_numberkeyboard"
+                            android:text="0"
+                            android:textColor="#8a000000"
+                            android:textSize="34sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/btn_dot"
+
+                            android:layout_width="56dp"
+
+                            android:layout_height="56dp"
+                            android:background="@drawable/ripple_bg_numberkeyboard"
+                            android:paddingBottom="6dp"
+                            android:text="."
+                            android:textColor="#8a000000"
+                            android:textSize="40sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <ImageButton
+                            android:id="@+id/ibtn_delete"
+
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:background="@drawable/ripple_bg_numberkeyboard"
+                            android:src="@mipmap/ic_delete" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <!--箭头按钮-->
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@drawable/textview_border"
-
-                android:gravity="center"
-                android:text="4"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
-        </com.xuexiang.xui.widget.button.RippleView>
-
-        <com.xuexiang.xui.widget.button.RippleView
-
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            >
-
-            <TextView
-                android:id="@+id/tv_five"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@drawable/textview_border"
-
-                android:gravity="center"
-                android:text="5"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
-
-        </com.xuexiang.xui.widget.button.RippleView>
-
-
-        <com.xuexiang.xui.widget.button.RippleView
-
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-           >
-
-            <TextView
-                android:id="@+id/tv_six"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@drawable/textview_border"
-
-                android:gravity="center"
-                android:text="6"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
-
-        </com.xuexiang.xui.widget.button.RippleView>
-
-
-        <com.xuexiang.xui.widget.button.RippleView
-
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_weight="1"
-            >
-
-            <TextView
-                android:id="@+id/tv_zhekou"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@drawable/textview_border"
-
-                android:gravity="center"
-                android:text="折扣"
-                android:textColor="@android:color/black"
-                android:textSize="18sp" />
-
-        </com.xuexiang.xui.widget.button.RippleView>
-
-    </LinearLayout>
-
-
-    <!--第3行-->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <com.xuexiang.xui.widget.button.RippleView
-
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            >
-
-            <TextView
-                android:id="@+id/tv_seven"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@drawable/textview_border"
-
-                android:gravity="center"
-                android:text="7"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
-        </com.xuexiang.xui.widget.button.RippleView>
-
-        <com.xuexiang.xui.widget.button.RippleView
-
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            >
-
-            <TextView
-                android:id="@+id/tv_eight"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@drawable/textview_border"
-
-                android:gravity="center"
-                android:text="8"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
-
-        </com.xuexiang.xui.widget.button.RippleView>
-
-
-        <com.xuexiang.xui.widget.button.RippleView
-
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-           >
-
-            <TextView
-                android:id="@+id/tv_nine"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@drawable/textview_border"
-
-                android:gravity="center"
-                android:text="9"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
-
-        </com.xuexiang.xui.widget.button.RippleView>
-
-
-        <com.xuexiang.xui.widget.button.RippleView
-
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_weight="1"
-            >
-
-            <TextView
-                android:id="@+id/tv_price"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@drawable/textview_border"
-
-                android:gravity="center"
-                android:text="价格"
-                android:textColor="@android:color/black"
-                android:textSize="18sp" />
-
-        </com.xuexiang.xui.widget.button.RippleView>
-
-    </LinearLayout>
-
-    <!--第4行-->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <com.xuexiang.xui.widget.button.RippleView
-
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
-
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1"
-           >
-
-            <TextView
-                android:id="@+id/tv_plus_jian"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@drawable/textview_border"
-
-                android:gravity="center"
-                android:text="+/-"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
-        </com.xuexiang.xui.widget.button.RippleView>
-
-        <com.xuexiang.xui.widget.button.RippleView
-
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
-
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1"
-            >
-
-            <TextView
-                android:id="@+id/tv_zero"
-
-                android:layout_width="match_parent"
-
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@drawable/textview_border"
-                android:gravity="center"
-                android:text="0"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
-
-        </com.xuexiang.xui.widget.button.RippleView>
-
-
-        <com.xuexiang.xui.widget.button.RippleView
-
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
-
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1"
-            >
-
-            <TextView
-                android:id="@+id/tv_numdot"
-                android:layout_width="match_parent"
-
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@drawable/textview_border"
-                android:gravity="center"
-                android:text="."
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
-
-        </com.xuexiang.xui.widget.button.RippleView>
-
-
-        <com.xuexiang.xui.widget.button.RippleView
-
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1"
-           >
-
-            <ImageView
-                android:id="@+id/iv_delete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:background="@drawable/textview_border"
-                android:padding="5dp"
-                android:src="@drawable/keyboard_delete" />
-
-        </com.xuexiang.xui.widget.button.RippleView>
+                android:layout_weight="0.7">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <!--        确认按钮-->
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fab_confirmbtn"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_gravity="bottom|end"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="36dp"
+                        android:clickable="true"
+                        android:src="@mipmap/confirmbtn"
+                        app:backgroundTint="#FF9801"
+                        app:rippleColor="#FFFF" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

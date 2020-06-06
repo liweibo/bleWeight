@@ -8,11 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.bleweight.MainActivity;
+import com.example.bleweight.MyApplication;
 import com.example.bleweight.R;
 import com.example.bleweight.adapter.ProductRecyclerAdapter;
 import com.example.bleweight.utils.MaterialLoadMoreView;
@@ -32,7 +34,7 @@ import static com.google.android.material.tabs.TabLayout.MODE_SCROLLABLE;
 
 
 public class OrderNoProductFragment extends Fragment {
-
+MyApplication apps;
     TabLayout tab_layout;
 
     //没有商品时的girl图像；
@@ -40,11 +42,12 @@ public class OrderNoProductFragment extends Fragment {
     //有商品时recyclerview
     LinearLayout ll_have_product_recycler;
     SwipeRecyclerView recycler_view_have_prod;
-    private ProductRecyclerAdapter mAdapter;
+    public ProductRecyclerAdapter mAdapter;
     Button new_order_firstpage;
     private SwipeRefreshLayout swipeRefreshLayout;
     private Handler mHandler = new Handler();
     private boolean mEnableLoadMore;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +59,7 @@ public class OrderNoProductFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_order_no_product, container, false);
+        apps = (MyApplication)getActivity().getApplication();
         initviews(v);
         clickViews();
         return v;
@@ -92,8 +96,15 @@ public class OrderNoProductFragment extends Fragment {
         //必须在setAdapter之前调用
         recycler_view_have_prod.setOnItemMenuClickListener(mMenuItemClickListener);
 
-        recycler_view_have_prod.setAdapter(mAdapter = new ProductRecyclerAdapter());
+        LinearLayout top_on_left = ((MainActivity) getActivity()).top_on_left;
+        View layout_right_mengban = ((MainActivity) getActivity()).layout_right_mengban;
+        LinearLayout tv_status_right_top = ((MainActivity) getActivity()).tv_status_right_top;
+        TextView click_pro_tv = ((MainActivity) getActivity()).click_pro_tv;
 
+        recycler_view_have_prod.setAdapter(mAdapter = new ProductRecyclerAdapter(
+                top_on_left,layout_right_mengban,tv_status_right_top,click_pro_tv,
+                apps
+        ));
 
         new_order_firstpage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,8 +194,6 @@ public class OrderNoProductFragment extends Fragment {
     }
 
 
-
-
     /**
      * 刷新。
      */
@@ -249,7 +258,6 @@ public class OrderNoProductFragment extends Fragment {
             }, 1000);
         }
     };
-
 
 
 }
