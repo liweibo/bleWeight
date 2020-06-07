@@ -1,5 +1,9 @@
 package com.example.bleweight.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,13 +15,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.bleweight.MainActivity;
 import com.example.bleweight.MyApplication;
 import com.example.bleweight.R;
 import com.example.bleweight.adapter.ProductRecyclerAdapter;
-import com.example.bleweight.utils.MaterialLoadMoreView;
 import com.example.bleweight.utils.OrderPage;
 import com.example.bleweight.utils.XToastUtils;
 import com.example.bleweight.utils.data.RecyclerItemDataProvider;
@@ -34,7 +36,7 @@ import static com.google.android.material.tabs.TabLayout.MODE_SCROLLABLE;
 
 
 public class OrderNoProductFragment extends Fragment {
-MyApplication apps;
+    MyApplication apps;
     TabLayout tab_layout;
 
     //没有商品时的girl图像；
@@ -44,7 +46,6 @@ MyApplication apps;
     SwipeRecyclerView recycler_view_have_prod;
     public ProductRecyclerAdapter mAdapter;
     Button new_order_firstpage;
-    private SwipeRefreshLayout swipeRefreshLayout;
     private Handler mHandler = new Handler();
     private boolean mEnableLoadMore;
 
@@ -59,7 +60,7 @@ MyApplication apps;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_order_no_product, container, false);
-        apps = (MyApplication)getActivity().getApplication();
+        apps = (MyApplication) getActivity().getApplication();
         initviews(v);
         clickViews();
         return v;
@@ -80,8 +81,6 @@ MyApplication apps;
         //recyclerview
         recycler_view_have_prod = v.findViewById(R.id.recycler_view_have_prod);
 
-        swipeRefreshLayout = v.findViewById(R.id.swipe_refresh_layout_havaorder);
-        swipeRefreshLayout.setColorSchemeColors(0xff0099cc, 0xffff4444, 0xff669900, 0xffaa66cc, 0xffff8800);
 
         new_order_firstpage = v.findViewById(R.id.new_order_firstpage_haveorder);
         ll_have_product_recycler = v.findViewById(R.id.ll_have_product_recycler);
@@ -102,24 +101,21 @@ MyApplication apps;
         TextView click_pro_tv = ((MainActivity) getActivity()).click_pro_tv;
 
         recycler_view_have_prod.setAdapter(mAdapter = new ProductRecyclerAdapter(
-                top_on_left,layout_right_mengban,tv_status_right_top,click_pro_tv,
+                top_on_left, layout_right_mengban, tv_status_right_top, click_pro_tv,
                 apps
         ));
 
         new_order_firstpage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setGirlGone();
-                setLLHaveProd();
-                //加载recycler上展示的数据
-                mAdapter.refresh(RecyclerItemDataProvider.getZhongxinfachuListNewInfos());
+//                setGirlGone();
+//                setLLHaveProd();
+//                //加载recycler上展示的数据
+//                mAdapter.refresh(RecyclerItemDataProvider.getZhongxinfachuListNewInfos());
 
             }
         });
 
-        // 刷新监听。
-        swipeRefreshLayout.setOnRefreshListener(mRefreshListener);
-        refresh();
 
 
     }
@@ -134,6 +130,9 @@ MyApplication apps;
 
     public void setLLHaveProd() {
         ll_have_product_recycler.setVisibility(View.VISIBLE);
+    }
+    public void setLLHaveProdGone() {
+        ll_have_product_recycler.setVisibility(View.GONE);
     }
 
 
@@ -194,70 +193,37 @@ MyApplication apps;
     }
 
 
-    /**
-     * 刷新。
-     */
-    private SwipeRefreshLayout.OnRefreshListener mRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+
+
+
+
+    //广播接收
+
+    RecyProdRefreshBroadcastRecei rece;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        rece = new RecyProdRefreshBroadcastRecei();
+        getActivity().registerReceiver(rece,
+                new IntentFilter("com.ble.weight"));
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().unregisterReceiver(rece);
+    }
+
+
+    public class RecyProdRefreshBroadcastRecei extends BroadcastReceiver {
         @Override
-        public void onRefresh() {
-            loadData();
-        }
-    };
-
-    private void refresh() {
-        swipeRefreshLayout.setRefreshing(true);
-        loadData();
-    }
-
-    private void loadData() {
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mAdapter.refresh(RecyclerItemDataProvider.getZhongxinfachuListNewInfos());
-                if (swipeRefreshLayout != null) {
-                    swipeRefreshLayout.setRefreshing(false);
-                }
-                enableLoadMore();
-            }
-        }, 1000);
-    }
-
-    /**
-     * 确保有数据加载了才开启加载更多
-     */
-    private void enableLoadMore() {
-        if (recycler_view_have_prod != null && !mEnableLoadMore) {
-            mEnableLoadMore = true;
-            useMaterialLoadMore();
-            // 加载更多的监听。
-            recycler_view_have_prod.setLoadMoreListener(mLoadMoreListener);
-            recycler_view_have_prod.loadMoreFinish(false, true);
+        public void onReceive(Context context, Intent intent) {
+                setGirlGone();
+                setLLHaveProd();
+            //监听到广播后，做的操作：数据刷新
+            mAdapter.refresh(RecyclerItemDataProvider.getZhongxinfachuListNewInfos());
         }
     }
-
-    private void useMaterialLoadMore() {
-        MaterialLoadMoreView loadMoreView = new MaterialLoadMoreView(getContext());
-        recycler_view_have_prod.addFooterView(loadMoreView);
-        recycler_view_have_prod.setLoadMoreView(loadMoreView);
-    }
-
-    /**
-     * 加载更多。
-     */
-    private SwipeRecyclerView.LoadMoreListener mLoadMoreListener = new SwipeRecyclerView.LoadMoreListener() {
-        @Override
-        public void onLoadMore() {
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mAdapter.loadMore(RecyclerItemDataProvider.getZhongxinfachuListNewInfos());
-                    if (recycler_view_have_prod != null) {
-                        recycler_view_have_prod.loadMoreFinish(false, true);
-                    }
-                }
-            }, 1000);
-        }
-    };
-
-
 }

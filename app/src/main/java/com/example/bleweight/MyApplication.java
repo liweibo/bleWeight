@@ -7,7 +7,9 @@ import com.xuexiang.xui.XUI;
 public class MyApplication extends Application {
     public String clickedPro = "test";
     public boolean isJijianbtn = true;
-    public int adapterPos=-1;
+    public int adapterPos = -1;
+    public int clickRecyPro = -1;//为1时表示点击的是左边的商品列表，0表示点击的是右边的商品列表。
+
     public MyApplication() {
 
     }
@@ -38,6 +40,13 @@ public class MyApplication extends Application {
         this.adapterPos = adapterPos;
     }
 
+    public int getClickRecyPro() {
+        return clickRecyPro;
+    }
+
+    public void setClickRecyPro(int clickRecyPro) {
+        this.clickRecyPro = clickRecyPro;
+    }
 
 
     @Override

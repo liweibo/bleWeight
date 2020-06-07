@@ -43,6 +43,7 @@ Button btn_new_order;
         switch (v.getId()) {
             case R.id.new_order_firstpage:
                 ((MainActivity) getActivity()).showNoProduct();
+                ((MainActivity) getActivity()).haveNeworder =true;
                 break;
         }
     }

@@ -2,6 +2,7 @@ package com.example.bleweight;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -32,6 +33,7 @@ import com.example.bleweight.fragment.OrderComputeFragment;
 import com.example.bleweight.fragment.OrderNoProductFragment;
 import com.example.bleweight.utils.MultiPage;
 import com.example.bleweight.utils.XToastUtils;
+import com.example.bleweight.utils.computeutil;
 import com.example.bleweight.utils.data.RecyclerItemDataProvider;
 import com.example.bleweight.utils.data.productAddDataInfo;
 import com.example.bleweight.utils.modeldataPage;
@@ -44,6 +46,7 @@ import com.xuexiang.xui.widget.button.RippleView;
 import com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner;
 
 import java.lang.reflect.Method;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,7 +98,9 @@ public class MainActivity extends AppCompatActivity implements
     FloatingActionButton fab_confirmbtn;
     public View layout_right_mengban;
     public TextView click_pro_tv;
+    public int clickLeftRecyProItem = -1;
 
+    public boolean haveNeworder = false;
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
@@ -249,6 +254,8 @@ public class MainActivity extends AppCompatActivity implements
                 tv_status_right_top.setVisibility(View.GONE);
             }
         });
+
+
         //商品计件，计重信息提交至商品列表中的某个商品
         fab_confirmbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -258,34 +265,153 @@ public class MainActivity extends AppCompatActivity implements
                 String zhongliang = text_input_zhongliang.getText().toString();
                 boolean jijianbool = apps.isJijianbtn();
                 int adapPos = apps.getAdapterPos();
-                productAddDataInfo dataInfo = RecyclerItemDataProvider.getZhongxinfachuListNewInfos().get(adapPos);
-                if (jijianbool) {//计件
 
-                    //单价  件数  都有值
-                    if (!danjia.equals("") && !jianshu.equals("")) {
-                        dataInfo.setdanjia(danjia);
-                        dataInfo.setjianshu(jianshu);
-                        dataInfo.setzhongliang("-");
-                        hideMengban();
-                    } else {
-                        XToastUtils.info("请输入单价，件数哦~");
-                    }
+                List<productAddDataInfo> dataListPro = RecyclerItemDataProvider.getZhongxinfachuListNewInfos();
+                productAddDataInfo dataInfo = null;
 
-                } else {//计重
-                    //单价  重量  都有值
-                    if (!danjia.equals("") && !zhongliang.equals("")) {
-                        dataInfo.setdanjia(danjia);
-                        dataInfo.setzhongliang(jianshu);
-                        dataInfo.setjianshu("-");
-                        hideMengban();
-
-                    } else {
-                        XToastUtils.info("请输入单价，重量哦~");
-                    }
+                if (adapPos > -1 && adapPos < dataListPro.size()) {
+                    dataInfo = dataListPro.get(adapPos);
                 }
 
-                //刷新数据
-                new OrderNoProductFragment().mAdapter.refresh(RecyclerItemDataProvider.getZhongxinfachuListNewInfos());
+                clickLeftRecyProItem = apps.getClickRecyPro();
+                int len = dataListPro.size();
+                if (clickLeftRecyProItem == 1) {//表示是，点击了左边商品时，弹出输入框...此时，
+                    // 若输入框数据完整，则在右边显示的商品list中添加一行数据；
+                    if (jijianbool) {//计件
+                        //单价  件数  都有值
+                        if (!danjia.equals("") && !jianshu.equals("")) {
+
+                            String realLen;
+                            int xuhaoLen = len + 1;//表示序号从01开始
+                            if (xuhaoLen > 9) {
+                                realLen = xuhaoLen + "";
+                            } else {
+                                realLen = "0" + xuhaoLen;
+                            }
+
+                            //计算单个商品小计
+                            double danjiadouble = Double.valueOf(danjia);
+                            double jianshudouble = Double.valueOf(jianshu);
+                            String str = danjiadouble * jianshudouble + "";
+                            double proxiaoji = computeutil.stringToDouble(str);
+
+
+                            productAddDataInfo onedata = new productAddDataInfo(realLen,
+                                    click_pro_tv.getText().toString(),
+                                    danjia,
+                                    jianshu, "-", "" + proxiaoji);
+                            dataListPro.add(onedata);
+                            text_input_danjia.setText("");
+                            text_input_jianshu.setText("");
+                            text_input_zhongliang.setText("");
+
+                            hideMengban();
+                        } else {
+                            XToastUtils.info("请输入单价，件数哦~");
+                            return;
+                        }
+
+                    } else {//计重
+                        //单价  重量  都有值
+                        if (!danjia.equals("") && !zhongliang.equals("")) {
+
+                            String realLen;
+                            int xuhaoLen = len + 1;//表示序号从01开始
+                            if (xuhaoLen > 9) {
+                                realLen = xuhaoLen + "";
+                            } else {
+                                realLen = "0" + xuhaoLen;
+                            }
+
+                            //计算单个商品小计
+                            double zhongliangdouble = Double.valueOf(zhongliang);
+                            double danjiadouble = Double.valueOf(danjia);
+                            String str = danjiadouble * zhongliangdouble + "";
+                            double proxiaoji = computeutil.stringToDouble(str);
+
+
+                            productAddDataInfo onedata = new productAddDataInfo(realLen,
+                                    click_pro_tv.getText().toString(),
+                                    danjia,
+                                    zhongliang, "-", "" + proxiaoji);
+                            dataListPro.add(onedata);
+
+                            text_input_danjia.setText("");
+                            text_input_jianshu.setText("");
+                            text_input_zhongliang.setText("");
+                            hideMengban();
+
+                        } else {
+                            XToastUtils.info("请输入单价，重量哦~");
+                            return;
+
+                        }
+                    }
+
+
+                } else if (clickLeftRecyProItem == 0) {//表示时，点击了右边商品列表时，弹出输入框...，
+                    //此时若输入框数据完整，则更新商品list某行的数据；
+
+                    if (jijianbool) {//计件
+                        //单价  件数  都有值
+                        if (!danjia.equals("") && !jianshu.equals("")) {
+                            dataInfo.setdanjia(danjia);
+                            dataInfo.setjianshu(jianshu);
+                            dataInfo.setzhongliang("-");
+
+                            //计算单个商品小计
+                            double danjiadouble = Double.valueOf(danjia);
+                            double jianshudouble = Double.valueOf(jianshu);
+                            String str = danjiadouble * jianshudouble + "";
+                            double proxiaoji = computeutil.stringToDouble(str);
+
+                            dataInfo.setxiaoji(proxiaoji + "");
+                            text_input_danjia.setText("");
+                            text_input_jianshu.setText("");
+                            text_input_zhongliang.setText("");
+                            hideMengban();
+                        } else {
+                            XToastUtils.info("请输入单价，件数哦~");
+                            return;
+                        }
+
+                    } else {//计重
+                        //单价  重量  都有值
+                        if (!danjia.equals("") && !zhongliang.equals("")) {
+                            dataInfo.setdanjia(danjia);
+                            dataInfo.setzhongliang(zhongliang);
+                            dataInfo.setjianshu("-");
+
+                            //计算单个商品小计
+                            double danjiadouble = Double.valueOf(danjia);
+                            double zhongliangdouble = Double.valueOf(zhongliang);
+
+
+                            String str = danjiadouble * zhongliangdouble + "";
+                            double proxiaoji = computeutil.stringToDouble(str);
+
+
+                            dataInfo.setxiaoji(proxiaoji + "");
+                            text_input_danjia.setText("");
+                            text_input_jianshu.setText("");
+                            text_input_zhongliang.setText("");
+                            hideMengban();
+
+                        } else {
+                            XToastUtils.info("请输入单价，重量哦~");
+                            return;
+
+                        }
+                    }
+
+
+                }
+
+
+                //发送刷新数据的广播:在ordernoproductfragment中刷新。
+
+                Intent intnet = new Intent("com.ble.weight");
+                sendBroadcast(intnet);
 
             }
         });
@@ -387,6 +513,7 @@ public class MainActivity extends AppCompatActivity implements
         top_on_left.setVisibility(View.GONE);
         layout_right_mengban.setVisibility(View.GONE);
         tv_status_right_top.setVisibility(View.GONE);
+
     }
 
     public void initviews() {
@@ -434,9 +561,15 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onItemClick(View view, int position) {
                 if (position < modeldataPage.getProductTv().length && position >= 0) {
-                    String tv = modeldataPage.getProductTv()[position];
 
-                    whenClickProd(tv);
+
+                    if (haveNeworder) {
+                        String tv = modeldataPage.getProductTv()[position];
+                        apps.setClickRecyPro(1);//表示点击的是左边的商品列表
+                        whenClickProd(tv);
+                    } else {
+                        XToastUtils.info("请先新增订单哦~");
+                    }
 
                 }
 
@@ -605,8 +738,16 @@ public class MainActivity extends AppCompatActivity implements
                 @Override
                 public void onItemClick(View view, int position) {
                     if (position < modeldataPage.getProductTv().length && position >= 0) {
-                        String tv = modeldataPage.getProductPicitwoTv()[position];
-                        whenClickProd(tv);
+
+
+                        if (haveNeworder) {
+                            apps.setClickRecyPro(1);//表示点击的是左边的商品列表
+
+                            String tv = modeldataPage.getProductPicitwoTv()[position];
+                            whenClickProd(tv);
+                        } else {
+                            XToastUtils.info("请先新增订单哦~");
+                        }
                     }
 
 
@@ -624,9 +765,18 @@ public class MainActivity extends AppCompatActivity implements
                 @Override
                 public void onItemClick(View view, int position) {
                     if (position < modeldataPage.getProductTv().length && position >= 0) {
-                        String tv = modeldataPage.getProductTv()[position];
-                        whenClickProd(tv);
+
+
+                        if (haveNeworder) {
+                            apps.setClickRecyPro(1);//表示点击的是左边的商品列表
+
+                            String tv = modeldataPage.getProductTv()[position];
+                            whenClickProd(tv);
+                        } else {
+                            XToastUtils.info("请先新增订单哦~");
+                        }
                     }
+
 
                 }
             });
@@ -641,8 +791,15 @@ public class MainActivity extends AppCompatActivity implements
                 @Override
                 public void onItemClick(View view, int position) {
                     if (position < modeldataPage.getProductPicitwoTv().length && position >= 0) {
-                        String tv = modeldataPage.getProductPicitwoTv()[position];
-                        whenClickProd(tv);
+                        if (haveNeworder) {
+                            apps.setClickRecyPro(1);//表示点击的是左边的商品列表
+
+                            String tv = modeldataPage.getProductPicitwoTv()[position];
+                            whenClickProd(tv);
+                        } else {
+                            XToastUtils.info("请先新增订单哦~");
+                        }
+
                     }
 
                 }

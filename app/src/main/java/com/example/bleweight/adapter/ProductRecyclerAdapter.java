@@ -55,6 +55,8 @@ public class ProductRecyclerAdapter extends BaseRecyclerAdapter<productAddDataIn
                 public void onClick(View v) {
 //                    XToastUtils.success("pro:" + model.getprodName());
                     apps.setAdapterPos(position);//记录点击的adapter的位置
+                    apps.setClickRecyPro(0);//表示点击右边的商品列表
+
                     top_on_lefts.setVisibility(View.VISIBLE);
                     view_top_on_rights.setVisibility(View.VISIBLE);
                     tv_status_right_tops.setVisibility(View.VISIBLE);
