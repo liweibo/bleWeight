@@ -58,9 +58,9 @@ public class MainActivity extends AppCompatActivity implements
     ImageButton tvDele;
     MyApplication apps;
     EditText etInput;
-    EditText text_input_danjia;
-    EditText text_input_jianshu;
-    EditText text_input_zhongliang;
+    public EditText text_input_danjia;
+    public EditText text_input_jianshu;
+    public EditText text_input_zhongliang;
     SharedPreferences.Editor editor;
     RippleView btnLabel;
 
@@ -90,10 +90,10 @@ public class MainActivity extends AppCompatActivity implements
     CardView card_view_product;
     private FloatingActionButton fab_close;
     private MaterialSpinner spinner_material;
-    FrameLayout framelayout_jijian;
-    FrameLayout framlayout_jizhong;
-    Button jijian_btn;
-    Button jizhong_btn;
+    public  FrameLayout framelayout_jijian;
+    public FrameLayout framlayout_jizhong;
+    public Button jijian_btn;
+    public Button jizhong_btn;
 
     FloatingActionButton fab_confirmbtn;
     public View layout_right_mengban;
@@ -277,7 +277,9 @@ public class MainActivity extends AppCompatActivity implements
                 int len = dataListPro.size();
                 if (clickLeftRecyProItem == 1) {//表示是，点击了左边商品时，弹出输入框...此时，
                     // 若输入框数据完整，则在右边显示的商品list中添加一行数据；
+                    System.out.println("bool计件？" + jijianbool);
                     if (jijianbool) {//计件
+                        System.out.println("shi计件");
                         //单价  件数  都有值
                         if (!danjia.equals("") && !jianshu.equals("")) {
 
@@ -301,9 +303,7 @@ public class MainActivity extends AppCompatActivity implements
                                     danjia,
                                     jianshu, "-", "" + proxiaoji);
                             dataListPro.add(onedata);
-                            text_input_danjia.setText("");
-                            text_input_jianshu.setText("");
-                            text_input_zhongliang.setText("");
+                            setEdittextEmp();
 
                             hideMengban();
                         } else {
@@ -312,6 +312,8 @@ public class MainActivity extends AppCompatActivity implements
                         }
 
                     } else {//计重
+                        System.out.println("shi计重");
+
                         //单价  重量  都有值
                         if (!danjia.equals("") && !zhongliang.equals("")) {
 
@@ -333,12 +335,10 @@ public class MainActivity extends AppCompatActivity implements
                             productAddDataInfo onedata = new productAddDataInfo(realLen,
                                     click_pro_tv.getText().toString(),
                                     danjia,
-                                    zhongliang, "-", "" + proxiaoji);
+                                    "-", zhongliang, "" + proxiaoji);
                             dataListPro.add(onedata);
 
-                            text_input_danjia.setText("");
-                            text_input_jianshu.setText("");
-                            text_input_zhongliang.setText("");
+                            setEdittextEmp();
                             hideMengban();
 
                         } else {
@@ -351,6 +351,8 @@ public class MainActivity extends AppCompatActivity implements
 
                 } else if (clickLeftRecyProItem == 0) {//表示时，点击了右边商品列表时，弹出输入框...，
                     //此时若输入框数据完整，则更新商品list某行的数据；
+
+
 
                     if (jijianbool) {//计件
                         //单价  件数  都有值
@@ -366,9 +368,7 @@ public class MainActivity extends AppCompatActivity implements
                             double proxiaoji = computeutil.stringToDouble(str);
 
                             dataInfo.setxiaoji(proxiaoji + "");
-                            text_input_danjia.setText("");
-                            text_input_jianshu.setText("");
-                            text_input_zhongliang.setText("");
+                            setEdittextEmp();
                             hideMengban();
                         } else {
                             XToastUtils.info("请输入单价，件数哦~");
@@ -392,9 +392,7 @@ public class MainActivity extends AppCompatActivity implements
 
 
                             dataInfo.setxiaoji(proxiaoji + "");
-                            text_input_danjia.setText("");
-                            text_input_jianshu.setText("");
-                            text_input_zhongliang.setText("");
+                            setEdittextEmp();
                             hideMengban();
 
                         } else {
@@ -428,32 +426,14 @@ public class MainActivity extends AppCompatActivity implements
         jizhong_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                apps.setJijianbtn(false);
-                framelayout_jijian.setVisibility(View.GONE);
-                framlayout_jizhong.setVisibility(View.VISIBLE);
-
-                jizhong_btn.setBackgroundResource(R.drawable.ripple_bg_jijian);
-                jizhong_btn.setTextColor(Color.parseColor("#ff00796b"));
-
-                jijian_btn.setBackgroundResource(R.drawable.ripple_bg_jizhong);
-                jijian_btn.setTextColor(Color.parseColor("#8a000000"));
+                clickJizhongbtn();
             }
         });
         //点击计件按钮
         jijian_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                apps.setJijianbtn(true);
-                framelayout_jijian.setVisibility(View.VISIBLE);
-                framlayout_jizhong.setVisibility(View.GONE);
-
-                jijian_btn.setBackgroundResource(R.drawable.ripple_bg_jijian);
-                jijian_btn.setTextColor(Color.parseColor("#ff00796b"));
-
-                jizhong_btn.setBackgroundResource(R.drawable.ripple_bg_jizhong);
-                jizhong_btn.setTextColor(Color.parseColor("#8a000000"));
-
-
+                clickJijianbtn();
             }
         });
 
@@ -466,9 +446,11 @@ public class MainActivity extends AppCompatActivity implements
 //        top_on_left.setWidth((int) ((width2 * 0.667) ));
 //        ll_top_on_right.setWidth((int) ((width2 * 0.334) ));
 //        tv_status_right_top.setWidth((int) ((width2 * 0.334) ));
-        top_on_left.setMinimumWidth((int) ((width2 * 0.667)));
-        ll_top_on_right.setMinimumWidth((int) (width2 * 0.334));
-        tv_status_right_top.setMinimumWidth((int) (width2 * 0.334));
+        System.out.println("屏幕宽度：" + width2);
+        System.out.println("屏幕gao度：" + height2);
+        top_on_left.setMinimumWidth((int) ((width2 * 0.6) + 12));
+        ll_top_on_right.setMinimumWidth((int) (width2 * 0.4 - 12));
+        tv_status_right_top.setMinimumWidth((int) (width2 * 0.4 - 12));
 
 
         //默认是 单价输入框选中
@@ -509,12 +491,45 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
+    public void clickJizhongbtn() {
+        apps.setJijianbtn(false);
+        framelayout_jijian.setVisibility(View.GONE);
+        framlayout_jizhong.setVisibility(View.VISIBLE);
+
+        jizhong_btn.setBackgroundResource(R.drawable.ripple_bg_jijian);
+        jizhong_btn.setTextColor(Color.parseColor("#ff00796b"));
+
+        jijian_btn.setBackgroundResource(R.drawable.ripple_bg_jizhong);
+        jijian_btn.setTextColor(Color.parseColor("#8a000000"));
+    }
+
+    public void clickJijianbtn() {
+        apps.setJijianbtn(true);
+        framelayout_jijian.setVisibility(View.VISIBLE);
+        framlayout_jizhong.setVisibility(View.GONE);
+
+        jijian_btn.setBackgroundResource(R.drawable.ripple_bg_jijian);
+        jijian_btn.setTextColor(Color.parseColor("#ff00796b"));
+
+        jizhong_btn.setBackgroundResource(R.drawable.ripple_bg_jizhong);
+        jizhong_btn.setTextColor(Color.parseColor("#8a000000"));
+
+    }
+
     public void hideMengban() {
         top_on_left.setVisibility(View.GONE);
         layout_right_mengban.setVisibility(View.GONE);
         tv_status_right_top.setVisibility(View.GONE);
 
     }
+
+    public void setEdittextEmp() {
+        text_input_danjia.setText("");
+        text_input_jianshu.setText("");
+        text_input_zhongliang.setText("");
+    }
+
+
 
     public void initviews() {
 

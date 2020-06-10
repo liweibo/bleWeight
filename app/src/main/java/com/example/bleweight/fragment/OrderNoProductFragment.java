@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -100,9 +102,25 @@ public class OrderNoProductFragment extends Fragment {
         LinearLayout tv_status_right_top = ((MainActivity) getActivity()).tv_status_right_top;
         TextView click_pro_tv = ((MainActivity) getActivity()).click_pro_tv;
 
+        EditText text_input_danjia = ((MainActivity) getActivity()).text_input_danjia;
+        EditText text_input_jianshu = ((MainActivity) getActivity()).text_input_jianshu;
+        EditText text_input_zhongliang = ((MainActivity) getActivity()).text_input_zhongliang;
+
+        FrameLayout framelayout_jijian = ((MainActivity) getActivity()).framelayout_jijian;
+        FrameLayout framlayout_jizhong = ((MainActivity) getActivity()).framlayout_jizhong;
+        Button jijian_btn = ((MainActivity) getActivity()).jijian_btn;
+        Button jizhong_btn = ((MainActivity) getActivity()).jizhong_btn;
+
         recycler_view_have_prod.setAdapter(mAdapter = new ProductRecyclerAdapter(
-                top_on_left, layout_right_mengban, tv_status_right_top, click_pro_tv,
-                apps
+                top_on_left, layout_right_mengban, tv_status_right_top,
+                click_pro_tv, text_input_jianshu,
+                text_input_zhongliang,
+                text_input_danjia,
+                framelayout_jijian,
+                framlayout_jizhong,
+                jijian_btn,
+                jizhong_btn
+                , apps
         ));
 
         new_order_firstpage.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +133,6 @@ public class OrderNoProductFragment extends Fragment {
 
             }
         });
-
 
 
     }
@@ -131,6 +148,7 @@ public class OrderNoProductFragment extends Fragment {
     public void setLLHaveProd() {
         ll_have_product_recycler.setVisibility(View.VISIBLE);
     }
+
     public void setLLHaveProdGone() {
         ll_have_product_recycler.setVisibility(View.GONE);
     }
@@ -193,10 +211,6 @@ public class OrderNoProductFragment extends Fragment {
     }
 
 
-
-
-
-
     //广播接收
 
     RecyProdRefreshBroadcastRecei rece;
@@ -220,8 +234,8 @@ public class OrderNoProductFragment extends Fragment {
     public class RecyProdRefreshBroadcastRecei extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-                setGirlGone();
-                setLLHaveProd();
+            setGirlGone();
+            setLLHaveProd();
             //监听到广播后，做的操作：数据刷新
             mAdapter.refresh(RecyclerItemDataProvider.getZhongxinfachuListNewInfos());
         }

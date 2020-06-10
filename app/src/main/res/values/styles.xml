@@ -10,11 +10,10 @@
 
     <style name="TabLayoutStyle" parent="Base.Widget.Design.TabLayout">
         <item name="tabIndicatorColor">?attr/colorAccent</item>
-        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabIndicatorHeight">0dp</item>
         <item name="tabPaddingStart">12dp</item>
         <item name="tabPaddingEnd">12dp</item>
         <item name="android:background">@color/xui_config_color_white</item>
-        <item name="tabBackground">?attr/selectableItemBackground</item>
         <item name="tabTextAppearance">@style/TabText</item>
         <item name="tabSelectedTextColor">?attr/colorAccent</item>
         <item name="tabTextColor">@color/xui_config_color_gray_6</item>
@@ -23,9 +22,11 @@
     <!--TabLayout-->
     <style name="TabText" parent="TextAppearance.Design.Tab">
         <item name="android:textColor">@drawable/selector_tab_text_color</item>
-        <item name="android:textSize">?attr/xui_config_size_content_text</item>
+        <item name="android:textSize">14sp</item>
     </style>
-
+    <style name="MyCustomTabLayoutBac" parent="Widget.Design.TabLayout">
+        <item name="tabBackground">@drawable/selector_tab_bacg_color</item>
+    </style>
 
 
 
