@@ -71,10 +71,18 @@ public class OrderNoProductFragment extends Fragment {
 
     public void initviews(View v) {
         tab_layout = v.findViewById(R.id.tab_layout_order);
-        //tab
-        for (String page : OrderPage.getPageNames()) {
-            tab_layout.addTab(tab_layout.newTab().setText(page));
+
+
+       int orderListLen = OrderPage.getOrderList().size();
+        if (orderListLen ==0){
+
+        }else{
+            //tab
+            for (String page : OrderPage.getOrderList()) {
+                tab_layout.addTab(tab_layout.newTab().setText(page));
+            }
         }
+
         tab_layout.setTabMode(MODE_SCROLLABLE);
         tab_layout.addOnTabSelectedListener((MainActivity) getActivity());
 
@@ -123,13 +131,16 @@ public class OrderNoProductFragment extends Fragment {
                 , apps
         ));
 
+        //新建订单
         new_order_firstpage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                setGirlGone();
-//                setLLHaveProd();
-//                //加载recycler上展示的数据
-//                mAdapter.refresh(RecyclerItemDataProvider.getZhongxinfachuListNewInfos());
+                OrderPage.addOneOrder();
+               int size =  OrderPage.getOrderList().size();
+                //tab
+                    tab_layout.addTab(tab_layout.newTab().setText(OrderPage.getOrderList().get(size-1)));
+                //选中最后一个tab订单即新建订单
+                tab_layout.selectTab(tab_layout.getTabAt(size-1));
 
             }
         });

@@ -450,7 +450,8 @@
                                             app:tabRippleColor="#fff"
                                             app:tabMinWidth="70dp"
                                             app:tabMode="auto"
-                                            android:layout_height="36dp" />
+                                            android:layout_height="36dp"
+                                            />
                                     </LinearLayout>
 
 
@@ -464,7 +465,7 @@
                                         <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
                                             android:id="@+id/spinner"
                                             android:layout_width="match_parent"
-                                            android:layout_height="?attr/xui_actionbar_height"
+                                            android:layout_height="match_parent"
                                             android:textColor="@color/xui_config_color_edittext_textcolor"
                                             android:textSize="12sp"
                                             app:ms_dropdown_bg="@drawable/drop_down"

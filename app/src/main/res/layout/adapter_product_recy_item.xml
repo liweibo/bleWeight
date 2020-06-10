@@ -82,7 +82,7 @@
             android:id="@+id/iv_item_prod_arrow"
             android:layout_width="7.4dp"
             android:layout_height="12dp"
-            android:layout_weight="0.3"
+            android:layout_weight="0.1"
             android:gravity="center"
             android:src="@drawable/ic_right_arrow" />
     </LinearLayout>
