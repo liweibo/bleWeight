@@ -2,11 +2,31 @@ package com.example.bleweight.utils;
 
 import com.example.bleweight.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class modeldataPage {
 
-    modeldataPage() {
-
+    public modeldataPage() {
+        gukeListdata.add("李书行");
+        gukeListdata.add("廖冰");
+        gukeListdata.add("刘波");
+        gukeListdata.add("王三毛");
+        gukeListdata.add("陈炜");
+        gukeListdata.add("刘鹏");
+        gukeListdata.add("郝波");
+        gukeListdata.add("黄铖");
+        gukeListdata.add("王名");
+        gukeListdata.add("黎梦");
+        gukeListdata.add("吴燕飞");
+        gukeListdata.add("燕家云");
+        gukeListdata.add("康圆融");
     }
+
+
+
+    //顾客
+    List<String> gukeListdata = new ArrayList<>();
 
     //批次1
     static public int iconA[] = {
@@ -54,5 +74,17 @@ public class modeldataPage {
 
     public static String[] getProductTv() {
         return productTv;
+    }
+
+    public List<String> getGukeListdata() {
+        return gukeListdata;
+    }
+
+    public void setGukeListdata(List<String> gukeListdata) {
+        this.gukeListdata.clear();
+        for (int i = 0; i < gukeListdata.size(); i++) {
+            this.gukeListdata.add(gukeListdata.get(i));
+
+        }
     }
 }

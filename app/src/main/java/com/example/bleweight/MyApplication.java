@@ -10,9 +10,23 @@ public class MyApplication extends Application {
     public int adapterPos = -1;
     public int clickRecyPro = -1;//为1时表示点击的是左边的商品列表，0表示点击的是右边的商品列表。
 
+
+
+    public int currentTabIndex=-1;
     public MyApplication() {
 
     }
+
+
+    public int getCurrentTabIndex() {
+        return currentTabIndex;
+    }
+
+    public void setCurrentTabIndex(int currentTabIndex) {
+        this.currentTabIndex = currentTabIndex;
+    }
+
+
 
     public String getClickedPro() {
         return clickedPro;

@@ -33,6 +33,7 @@
 
 
             <Button
+                android:id="@+id/btn_delete_order"
                 android:layout_width="80dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="10dp"
@@ -43,6 +44,7 @@
                 android:textSize="12sp" />
 
             <Button
+                android:id="@+id/btn_piliang_deal"
                 android:layout_width="80dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="10dp"

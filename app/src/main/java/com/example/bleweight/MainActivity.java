@@ -32,6 +32,7 @@ import com.example.bleweight.fragment.BlankOrderFragment;
 import com.example.bleweight.fragment.OrderComputeFragment;
 import com.example.bleweight.fragment.OrderNoProductFragment;
 import com.example.bleweight.utils.MultiPage;
+import com.example.bleweight.utils.OrderPage;
 import com.example.bleweight.utils.XToastUtils;
 import com.example.bleweight.utils.computeutil;
 import com.example.bleweight.utils.data.RecyclerItemDataProvider;
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements
     CardView card_view_product;
     private FloatingActionButton fab_close;
     private MaterialSpinner spinner_material;
-    public  FrameLayout framelayout_jijian;
+    public FrameLayout framelayout_jijian;
     public FrameLayout framlayout_jizhong;
     public Button jijian_btn;
     public Button jizhong_btn;
@@ -101,6 +102,12 @@ public class MainActivity extends AppCompatActivity implements
     public int clickLeftRecyProItem = -1;
 
     public boolean haveNeworder = false;
+
+    public CardView crdview_zongjia;
+
+    public TextView tv_kehu_name;//客户名
+    public TextView tv_total_price;//总价
+    public LinearLayout ll_bill;//结账
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
@@ -130,9 +137,9 @@ public class MainActivity extends AppCompatActivity implements
             fragments.add(new OrderNoProductFragment());
             fragments.add(new OrderComputeFragment());
 
-            showFragment();
+//            showFragment();
         }
-
+        showFragment2();
 
         findVIew();
         sysKeyBoard(text_input_danjia);
@@ -233,6 +240,11 @@ public class MainActivity extends AppCompatActivity implements
         //确认按钮➡️
         fab_confirmbtn = findViewById(R.id.fab_confirmbtn);
 
+        crdview_zongjia = findViewById(R.id.crdview_zongjia);
+        tv_kehu_name = findViewById(R.id.tv_kehu_name);
+        tv_total_price = findViewById(R.id.tv_total_price);
+        ll_bill = findViewById(R.id.ll_bill);
+
 
         initviews();
 
@@ -266,7 +278,10 @@ public class MainActivity extends AppCompatActivity implements
                 boolean jijianbool = apps.isJijianbtn();
                 int adapPos = apps.getAdapterPos();
 
-                List<productAddDataInfo> dataListPro = RecyclerItemDataProvider.getZhongxinfachuListNewInfos();
+//                List<productAddDataInfo> dataListPro = RecyclerItemDataProvider.getZhongxinfachuListNewInfos();
+
+                String whichorder = OrderPage.getOrderList().get(apps.getCurrentTabIndex());
+                List<productAddDataInfo> dataListPro = RecyclerItemDataProvider.getAllOrderData().get(whichorder);
                 productAddDataInfo dataInfo = null;
 
                 if (adapPos > -1 && adapPos < dataListPro.size()) {
@@ -351,7 +366,6 @@ public class MainActivity extends AppCompatActivity implements
 
                 } else if (clickLeftRecyProItem == 0) {//表示时，点击了右边商品列表时，弹出输入框...，
                     //此时若输入框数据完整，则更新商品list某行的数据；
-
 
 
                     if (jijianbool) {//计件
@@ -489,7 +503,17 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
+        ll_bill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, BillActivity.class);
+
+                startActivity(intent);
+            }
+        });
+
     }
+
 
     public void clickJizhongbtn() {
         apps.setJijianbtn(false);
@@ -528,7 +552,6 @@ public class MainActivity extends AppCompatActivity implements
         text_input_jianshu.setText("");
         text_input_zhongliang.setText("");
     }
-
 
 
     public void initviews() {
@@ -575,18 +598,26 @@ public class MainActivity extends AppCompatActivity implements
         mRecyclerAdapter.setOnItemMyClickListener(new PiciProductAdapter.OnItemMyClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+
                 if (position < modeldataPage.getProductTv().length && position >= 0) {
 
 
                     if (haveNeworder) {
-                        String tv = modeldataPage.getProductTv()[position];
-                        apps.setClickRecyPro(1);//表示点击的是左边的商品列表
-                        whenClickProd(tv);
+                        if (OrderPage.getOrderList().size() > 0) {
+                            String tv = modeldataPage.getProductTv()[position];
+                            apps.setClickRecyPro(1);//表示点击的是左边的商品列表
+                            whenClickProd(tv);
+                        } else {
+                            XToastUtils.info("请先新增订单哦~");
+                        }
+
                     } else {
+
                         XToastUtils.info("请先新增订单哦~");
                     }
 
                 }
+
 
             }
         });
@@ -844,7 +875,13 @@ public class MainActivity extends AppCompatActivity implements
 
     public void showNoProduct() {
         currentIndex = 1;
-        showFragment();
+//        showFragment();
+        showFragment3();
+    }
+
+    public void showNewOrderMan() {
+        currentIndex = 0;
+        showFragment2();
     }
 
 
@@ -878,6 +915,21 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
+    public void showFragment2() {
+
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.frag, new BlankOrderFragment());
+        //提交事务
+        transaction.commit();
+    }
+
+    public void showFragment3() {
+
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.frag, new OrderNoProductFragment());
+        //提交事务
+        transaction.commit();
+    }
 
     /**
      * 恢复fragment

@@ -44,6 +44,7 @@ Button btn_new_order;
             case R.id.new_order_firstpage:
                 ((MainActivity) getActivity()).showNoProduct();
                 ((MainActivity) getActivity()).haveNeworder =true;
+                ((MainActivity) getActivity()).crdview_zongjia.setVisibility(View.VISIBLE);
                 break;
         }
     }

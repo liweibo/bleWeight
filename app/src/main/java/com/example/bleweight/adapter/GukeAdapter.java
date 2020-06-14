@@ -10,26 +10,41 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bleweight.R;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class PiciProductAdapter extends RecyclerView.Adapter<PiciProductAdapter.ListHolder> implements View.OnClickListener {
+
+public class GukeAdapter extends RecyclerView.Adapter<GukeAdapter.ListHolder> implements View.OnClickListener {
     private OnItemMyClickListener mOnItemMyClickListener;
     private Activity activity;
 
-    int[] icons;
-    String[] txt;
+    List<String> gukeListdata = new ArrayList<>();
 
-    public PiciProductAdapter(Activity activity, int[] icon, String[] productTv) {
-        this.activity = activity;
-        this.icons = icon;
-        this.txt = productTv;
 
+
+    public GukeAdapter() {
+//        this.activity = activity;
+//       this.gukeListdata = gukeListdata;
+        gukeListdata.add("李书行");
+        gukeListdata.add("廖冰");
+        gukeListdata.add("刘波");
+        gukeListdata.add("王三毛");
+        gukeListdata.add("陈炜");
+        gukeListdata.add("刘鹏");
+        gukeListdata.add("郝波");
+        gukeListdata.add("黄铖");
+        gukeListdata.add("王名");
+        gukeListdata.add("黎梦");
+        gukeListdata.add("吴燕飞");
+        gukeListdata.add("燕家云");
+        gukeListdata.add("康圆融");
     }
 
 
     @Override
     public ListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = View.inflate(parent.getContext(), R.layout.pici_grid_item, null);
+        View view = View.inflate(parent.getContext(), R.layout.guke_grid_item, null);
         ListHolder myViewHolder = new ListHolder(view);
         view.setOnClickListener(this);//将创建的Vie注册点击事件
         return myViewHolder;
@@ -45,7 +60,7 @@ public class PiciProductAdapter extends RecyclerView.Adapter<PiciProductAdapter.
 
     @Override
     public int getItemCount() {
-        return this.icons.length;
+        return this.gukeListdata.size();
     }
 
 
@@ -67,21 +82,19 @@ public class PiciProductAdapter extends RecyclerView.Adapter<PiciProductAdapter.
     }
 
     class ListHolder extends RecyclerView.ViewHolder {
-        ImageView icon;
-        TextView tv_pici_product;
+
+        TextView tv_guke;
 
         public ListHolder(View itemView) {
             super(itemView);
 
-            icon = itemView.findViewById(R.id.pic_pici);
-            tv_pici_product = itemView.findViewById(R.id.tv_pici_product);
+            tv_guke = itemView.findViewById(R.id.tv_guke_recy_item);
         }
 
         public void setData(int position) {
 
             itemView.setTag(position);
-            icon.setImageResource(icons[position]);
-            tv_pici_product.setText(txt[position]);
+            tv_guke.setText(gukeListdata.get(position));
         }
     }
 }

@@ -65,7 +65,7 @@ public class ProductRecyclerAdapter extends BaseRecyclerAdapter<productAddDataIn
     public void bindData(@NonNull RecyclerViewHolder holder, final int position, final productAddDataInfo model) {
         if (model != null) {
             //给对应的item中的子组件分别赋值；
-            holder.text(R.id.tv_item_prod_xuhao, model.getxuhao() + "");//工单编号
+            holder.text(R.id.tv_item_prod_xuhao, model.getxuhao() + "");
             holder.text(R.id.tv_item_prod_name, model.getprodName());
             holder.text(R.id.tv_item_prod_danjia, model.getdanjia() + "");
             holder.text(R.id.tv_item_prod_jianshu, model.getjianshu() + "");

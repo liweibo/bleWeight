@@ -550,13 +550,14 @@
 
 
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/crdview_zongjia"
                                 android:layout_width="match_parent"
                                 android:layout_height="70dp"
                                 android:layout_marginLeft="16dp"
                                 android:layout_marginRight="16dp"
                                 android:layout_marginBottom="16dp"
                                 android:gravity="center_vertical"
-                                android:visibility="visible"
+                                android:visibility="gone"
                                 app:cardCornerRadius="4dp"
                                 app:cardElevation="4dp">
 
@@ -587,6 +588,7 @@
                                                 android:src="@mipmap/ic_customer" />
 
                                             <TextView
+                                                android:id="@+id/tv_kehu_name"
                                                 android:gravity="center_horizontal"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
@@ -628,6 +630,7 @@
                                         android:layout_gravity="center|end"
                                         android:layout_weight="2.2"
                                         android:gravity="center|end"
+
                                         android:orientation="horizontal">
 
                                         <LinearLayout
@@ -639,15 +642,17 @@
 
                                             <TextView
                                                 android:singleLine="true"
+                                                android:id="@+id/tv_total_price"
 
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:text="11120.09"
+                                                android:text="88.00"
                                                 android:textColor="#ff000000"
                                                 android:textSize="32sp" />
                                         </LinearLayout>
 
                                         <LinearLayout
+                                            android:id="@+id/ll_bill"
                                             android:layout_width="70dp"
                                             android:layout_height="match_parent"
                                             android:background="@drawable/ripple_bg_jiezhang"
