@@ -6,11 +6,47 @@
     android:background="#fafafa"
     android:orientation="vertical">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="#00796B"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:clickable="true"
+                android:background="@drawable/ripple_bg_backarro"
+android:id="@+id/ll_back_bill"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <ImageView
+
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center_vertical|start"
+                    android:gravity="center_vertical|start"
+                    android:src="@mipmap/backarrow" />
+                <TextView
+                    android:layout_gravity="center_vertical|start"
+                    android:gravity="center_vertical|start"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="20dp"
+                    android:text="结账"
+                    android:textColor="#ffffffff"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -227,8 +263,7 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:paddingLeft="16dp"
-                            android:paddingRight="16dp"
-                          >
+                            android:paddingRight="16dp">
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/recycler_guke"
@@ -240,9 +275,9 @@
                         <!--                        地址等输入框-->
 
                         <LinearLayout
-                            android:background="#FFF5F5F5"
                             android:layout_width="match_parent"
                             android:layout_height="64dp"
+                            android:background="#FFF5F5F5"
                             android:orientation="horizontal">
 
                             <LinearLayout
@@ -254,10 +289,10 @@
                                 android:gravity="center">
 
                                 <EditText
-                                    android:hint="输入电话"
                                     style="@style/EditText.Normal"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:hint="输入电话"
                                     android:singleLine="true" />
                             </LinearLayout>
 
@@ -271,10 +306,10 @@
                                 android:gravity="center">
 
                                 <EditText
-                                    android:hint="输入地址"
                                     style="@style/EditText.Normal"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:hint="输入地址"
                                     android:singleLine="true" />
                             </LinearLayout>
 
@@ -321,8 +356,48 @@
                             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                             <LinearLayout
+
                                 android:layout_width="match_parent"
-                                android:layout_height="35dp"
+                                android:layout_height="46dp"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center|start"
+                                    android:layout_weight="1"
+                                    android:gravity="center|start">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="16dp"
+                                        android:text="票据预览"
+                                        android:textColor="#de000000"
+                                        android:textSize="20sp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center|end"
+                                    android:layout_weight="1.3"
+                                    android:gravity="center|end">
+
+                                    <CheckBox
+                                        android:checked="true"
+                                        android:id="@+id/cb_print"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="16dp"
+                                        android:text="打印小票" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
                                 android:background="#fff5f5f5"
                                 android:orientation="horizontal">
 
@@ -397,9 +472,9 @@
                             <LinearLayout
                                 android:id="@+id/ll_have_billst_recycler"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                >
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
 
                                 <com.yanzhenjie.recyclerview.SwipeRecyclerView
                                     android:id="@+id/recycler_view_bill"
@@ -408,6 +483,105 @@
                                     android:overScrollMode="never" />
 
 
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/ll_have_"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:background="#FFF5F5F5"
+                                android:orientation="vertical">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="5dp"/>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center_vertical"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+
+
+                                        <TextView
+                                            android:text="订单编号：202004260018"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="16dp"
+                                            android:textColor="#8a000000"
+                                            android:textSize="12sp" />
+                                        <LinearLayout
+
+                                            android:layout_width="fill_parent"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="right">
+
+                                            <TextView
+                                                android:layout_marginRight="16dp"
+                                                android:text="销售员：刘姐"
+                                                android:textColor="#8a000000"
+                                                android:textSize="12sp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="right"
+                                                 />
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center_vertical"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+
+
+                                        <TextView
+                                            android:text="订单时间：2020-04-26 16:43:52"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="16dp"
+                                            android:textColor="#8a000000"
+                                            android:textSize="12sp" />
+                                        <LinearLayout
+                                            android:layout_width="fill_parent"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="right">
+
+                                            <TextView
+                                                android:id="@+id/saleaddress"
+                                                android:layout_marginRight="16dp"
+                                                android:text="@string/print_content"
+                                                android:textColor="#8a000000"
+                                                android:textSize="12sp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="right"
+                                                />
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="5dp"/>
                             </LinearLayout>
 
                         </LinearLayout>
@@ -457,11 +631,12 @@
                                         android:textColor="#8a000000"
                                         android:textSize="14sp" />
                                 </LinearLayout>
+
                                 <LinearLayout
-                                    android:layout_marginLeft="8dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:layout_gravity="center"
+                                    android:layout_marginLeft="8dp"
                                     android:layout_marginRight="8dp"
                                     android:gravity="center">
 
@@ -486,7 +661,6 @@
                                 android:orientation="horizontal"
 
                                 android:paddingLeft="5dp">
-
 
 
                                 <LinearLayout
@@ -527,6 +701,54 @@
 
 
     </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="4dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="#00796B"
+            android:orientation="horizontal">
+
+            <LinearLayout
+
+                android:id="@+id/ll_backlast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|left"
+                android:background="@drawable/ripple_bg"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/backlast" />
+
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="结账"
+                    android:textColor="#ffffffff"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
 
 
 </LinearLayout>

@@ -221,7 +221,7 @@
 
     <string-array name="sort_mode_entry">
         <item>按批次</item>
-        <item>按进货</item>
+        <item>按物料</item>
 
     </string-array>
 
@@ -232,6 +232,27 @@
 
     </string-array>
 
+    <string-array name="chuankou">
+        <item>/dev/ttyS0</item>
+        <item>/dev/ttyS1</item>
+        <item>/dev/ttyS2</item>
+        <item>/dev/ttyS3</item>
+        <item>/dev/ttyS4</item>
+        <item>/dev/ttyS5</item>
+    </string-array>
+
+    <string-array name="botelv">
+        <item>300</item>
+        <item>600</item>
+        <item>1200</item>
+        <item>1800</item>
+        <item>2400</item>
+        <item>4800</item>
+        <item>9600</item>
+        <item>19200</item>
+        <item>115200</item>
+
+    </string-array>
     <string-array name="sort_mode_one_entry">
         <item>根据品牌名称排序</item>
     </string-array>

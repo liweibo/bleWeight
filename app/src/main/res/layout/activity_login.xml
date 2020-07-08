@@ -1,0 +1,207 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fafafa"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1.7"
+            android:background="#FFF0F0F0"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="480dp"
+                android:layout_height="360dp"
+                android:layout_marginBottom="10dp"
+                android:src="@mipmap/logion_img" />
+
+        </LinearLayout>
+
+        <!--        右边-->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FF00796B"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal|bottom">
+
+                    <ImageView
+                        android:layout_width="168dp"
+                        android:layout_height="50dp"
+                        android:src="@mipmap/login_logo" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.5">
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+
+                        <!-- 输入框-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_gravity="right|bottom"
+                                    android:layout_marginRight="69dp"
+                                    android:layout_marginBottom="12dp"
+                                    android:src="@mipmap/user"
+
+                                    android:textColor="#8a000000"
+                                    android:textSize="14sp" />
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/text_input_layout_danjia"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="66dp"
+                                    android:paddingRight="66dp"
+                                    android:scrollbarAlwaysDrawHorizontalTrack="true"
+                                    android:theme="@style/MyEditText"
+                                    app:hintTextColor="#E8E8E8">
+
+                                    <EditText
+                                        android:id="@+id/text_input_user"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="56dp"
+                                        android:clickable="true"
+                                        android:hint="输入用户名"
+                                        android:inputType="number"
+                                        android:textColor="#FFFFFF"
+                                        android:textColorHint="#E8E8E8"
+
+                                        android:textCursorDrawable="@drawable/cursorshape"
+                                        android:textSize="22sp"
+                                        android:theme="@style/MyEditText" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/text_input_layout_jianshu"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:paddingLeft="66dp"
+                                    android:paddingRight="66dp"
+                                    android:scrollbarAlwaysDrawHorizontalTrack="true"
+                                    >
+
+                                    <EditText
+                                        android:id="@+id/text_input_psw"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="56dp"
+
+                                        android:clickable="true"
+                                        android:hint="输入密码"
+                                        android:inputType="textPassword"
+                                        android:textColor="#FFFFFF"
+                                        android:textColorHint="#E8E8E8"
+                                        android:textCursorDrawable="@drawable/cursorshape"
+                                        android:textSize="22sp"
+                                        android:theme="@style/MyEditText"
+                                         />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+                                <ImageView
+                                    android:clickable="true"
+                                    android:id="@+id/psw_img"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_gravity="right|bottom"
+                                    android:layout_marginRight="69dp"
+                                    android:layout_marginBottom="12dp"
+
+                                    android:src="@mipmap/seepsw"
+
+                                    android:textColor="#8a000000"
+                                    android:textSize="14sp" />
+                            </FrameLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fab_login"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="40dp"
+                        android:clickable="true"
+                        android:src="@mipmap/ic_arrow_next"
+                        app:backgroundTint="#CFCFCF"
+                        app:rippleColor="#fff" />
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:visibility="gone"
+
+                        android:id="@+id/fab_login2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="40dp"
+                        android:clickable="true"
+                        android:src="@mipmap/ic_arrow_next"
+                        app:backgroundTint="#FFFF9801"
+                        app:rippleColor="#fff" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

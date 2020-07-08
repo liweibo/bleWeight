@@ -27,7 +27,12 @@
     <style name="MyCustomTabLayoutBac" parent="Widget.Design.TabLayout">
         <item name="tabBackground">@drawable/selector_tab_bacg_color</item>
     </style>
-
-
+    <style name="MyEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/edittextnormal</item>
+        <item name="colorControlActivated">@color/edittextselect</item>
+    </style>
+    <style name="TextInputAppTheme" parent="Base.TextAppearance.AppCompat.Caption">
+        <item name="android:textColor">@color/btn_gray</item>
+    </style>
 
 </resources>

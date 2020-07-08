@@ -16,4 +16,8 @@
 
     <color name="menu_red_normal">#FF0000</color>
     <color name="menu_red_pressed">#FF6666</color>
+
+
+    <color name="edittextnormal">#8AFFFFFF</color>
+    <color name="edittextselect">#DEFFFFFF</color>
 </resources>

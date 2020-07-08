@@ -31,46 +31,79 @@
                     android:background="#00796B"
                     android:orientation="horizontal">
 
-                    <LinearLayout
+<!--                    <LinearLayout-->
 
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical|left"
-                        android:gravity="center">
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center_vertical|left"-->
+<!--                        android:gravity="center">-->
 
-                        <ImageView
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="2dp"
-                            android:src="@mipmap/ic_signal_wifi" />
+<!--                        <ImageView-->
+<!--                            android:layout_width="16dp"-->
+<!--                            android:layout_height="16dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:layout_marginLeft="16dp"-->
+<!--                            android:layout_marginRight="2dp"-->
+<!--                            android:src="@mipmap/ic_signal_wifi" />-->
 
 
-                        <ImageView
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="4dp"
-                            android:src="@mipmap/ic_signal_cellular" />
+<!--                        <ImageView-->
+<!--                            android:layout_width="16dp"-->
+<!--                            android:layout_height="16dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:layout_marginRight="4dp"-->
+<!--                            android:src="@mipmap/ic_signal_cellular" />-->
 
-                        <ImageView
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="8dp"
-                            android:src="@mipmap/ic_battery" />
+<!--                        <ImageView-->
+<!--                            android:layout_width="16dp"-->
+<!--                            android:layout_height="16dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:layout_marginRight="8dp"-->
+<!--                            android:src="@mipmap/ic_battery" />-->
 
-                        <TextView
+<!--                        <TextView-->
 
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:text="5月7日 周四 下午 3:17"-->
+<!--                            android:textColor="#ffffffff"-->
+<!--                            android:textSize="14sp" />-->
+
+<!--                    </LinearLayout>-->
+
+
+
+                        <LinearLayout
+                            android:id="@+id/ll_back_prod"
+                            android:clickable="true"
+                            android:background="@drawable/ripple_bg_backarro"
+
+                            android:orientation="horizontal"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="5月7日 周四 下午 3:17"
-                            android:textColor="#ffffffff"
-                            android:textSize="14sp" />
+                            android:layout_height="match_parent">
+                            <ImageView
 
-                    </LinearLayout>
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:layout_gravity="center_vertical|start"
+                                android:gravity="center_vertical|start"
+                                android:src="@mipmap/backarrow" />
+<!--                            <TextView-->
+<!--                                android:layout_gravity="center_vertical|start"-->
+<!--                                android:gravity="center_vertical|start"-->
+<!--                                android:layout_marginLeft="12dp"-->
+<!--                                android:layout_marginRight="20dp"-->
+<!--                                android:text="商品"-->
+<!--                                android:textColor="#ffffffff"-->
+<!--                                android:textSize="16sp"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"/>-->
+                        </LinearLayout>
+
 
 
                     <ImageView
@@ -82,20 +115,24 @@
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center_vertical|right"
                         android:gravity="center">
 
 
                         <LinearLayout
+                            android:id="@+id/ll_zongdian"
+                            android:background="@drawable/ripple_bg_zongdian"
+                            android:clickable="true"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:layout_marginRight="16dp"
                             android:gravity="center"
                             android:orientation="horizontal">
 
                             <ImageView
+                                android:layout_marginTop="1dp"
                                 android:layout_width="16dp"
                                 android:layout_height="16dp"
                                 android:layout_gravity="center"
@@ -106,21 +143,23 @@
                                 android:id="@+id/tv_zongdian"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="?android:attr/selectableItemBackground"
                                 android:text="总店"
                                 android:textColor="#ffffffff"
                                 android:textSize="14sp" />
                         </LinearLayout>
 
                         <LinearLayout
+                            android:background="@drawable/ripple_bg_zongdian"
+                            android:clickable="true"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:layout_marginRight="16dp"
                             android:gravity="center"
                             android:orientation="horizontal">
 
                             <ImageView
+                                android:layout_marginTop="1dp"
                                 android:layout_width="16dp"
                                 android:layout_height="16dp"
                                 android:layout_gravity="center"
@@ -128,6 +167,7 @@
                                 android:src="@mipmap/peopple" />
 
                             <TextView
+                                android:id="@+id/tv_loginname"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="工号001"
@@ -136,8 +176,11 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/ll_set"
+                            android:background="@drawable/ripple_bg_zongdian"
+                            android:clickable="true"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:layout_marginRight="16dp"
                             android:gravity="center"
@@ -216,19 +259,20 @@
 
 
                             <LinearLayout
+android:clickable="true"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_margin="8dp"
                                 android:layout_weight="1"
+                                android:background="@drawable/ripple_bg_cheng"
 
-                                android:background="@drawable/chengforthree"
                                 android:gravity="center">
 
                                 <LinearLayout
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical|start"
-                                    android:layout_weight="0.5"
+                                    android:layout_weight="1"
                                     android:paddingLeft="8dp">
 
                                     <TextView
@@ -245,16 +289,16 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical|end"
-                                    android:layout_weight="1"
+                                    android:layout_weight="2.5"
                                     android:gravity="center_vertical|end"
                                     android:paddingRight="6dp">
 
                                     <TextView
-
+                                        android:id="@+id/tv_chengone"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:singleLine="true"
-                                        android:text="188.00"
+                                        android:text="0.00"
                                         android:textColor="#ff00796b"
                                         android:textSize="27sp" />
 
@@ -276,12 +320,13 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:clickable="true"
+
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_margin="8dp"
                                 android:layout_weight="1"
-
-                                android:background="@drawable/chengforthree_another"
+                                android:background="@drawable/ripple_bg_cheng_unsele"
                                 android:gravity="center">
 
                                 <LinearLayout
@@ -335,65 +380,65 @@
 
                             </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_margin="8dp"
-                                android:layout_weight="1"
+<!--                            <LinearLayout-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:layout_margin="8dp"-->
+<!--                                android:layout_weight="1"-->
 
-                                android:background="@drawable/chengforthree_another"
-                                android:gravity="center">
+<!--                                android:background="@drawable/chengforthree_another"-->
+<!--                                android:gravity="center">-->
 
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_vertical|start"
-                                    android:layout_weight="0.5"
-                                    android:paddingLeft="8dp">
+<!--                                <LinearLayout-->
+<!--                                    android:layout_width="0dp"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_gravity="center_vertical|start"-->
+<!--                                    android:layout_weight="0.5"-->
+<!--                                    android:paddingLeft="8dp">-->
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        android:gravity="center"
-                                        android:text="秤#3"
-                                        android:textColor="#8a000000"
-                                        android:textSize="20sp" />
-                                </LinearLayout>
+<!--                                    <TextView-->
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_gravity="center"-->
+<!--                                        android:gravity="center"-->
+<!--                                        android:text="秤#3"-->
+<!--                                        android:textColor="#8a000000"-->
+<!--                                        android:textSize="20sp" />-->
+<!--                                </LinearLayout>-->
 
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_vertical|end"
-                                    android:layout_weight="1"
-                                    android:gravity="center_vertical|end"
-                                    android:paddingRight="6dp">
+<!--                                <LinearLayout-->
+<!--                                    android:layout_width="0dp"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_gravity="center_vertical|end"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:gravity="center_vertical|end"-->
+<!--                                    android:paddingRight="6dp">-->
 
-                                    <TextView
+<!--                                    <TextView-->
 
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:singleLine="true"
-                                        android:text="0.00"
-                                        android:textColor="#8a000000"
-                                        android:textSize="27sp" />
-
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center_horizontal|bottom"
-                                        android:layout_marginStart="4dp"
-                                        android:layout_marginBottom="4dp"
-                                        android:singleLine="true"
-                                        android:text="kg"
-                                        android:textColor="#8a000000"
-                                        android:textSize="14sp" />
-
-                                </LinearLayout>
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:singleLine="true"-->
+<!--                                        android:text="0.00"-->
+<!--                                        android:textColor="#8a000000"-->
+<!--                                        android:textSize="27sp" />-->
 
 
-                            </LinearLayout>
+<!--                                    <TextView-->
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_gravity="center_horizontal|bottom"-->
+<!--                                        android:layout_marginStart="4dp"-->
+<!--                                        android:layout_marginBottom="4dp"-->
+<!--                                        android:singleLine="true"-->
+<!--                                        android:text="kg"-->
+<!--                                        android:textColor="#8a000000"-->
+<!--                                        android:textSize="14sp" />-->
+
+<!--                                </LinearLayout>-->
+
+
+<!--                            </LinearLayout>-->
 
 
                         </LinearLayout>
